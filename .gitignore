@@ -51,3 +51,6 @@ npm-debug.log
 play.pokemonshowdown.com/js/client-endload.js
 play.pokemonshowdown.com/js/client-endload.js
 build-tools/build-indexes
+config/config-example.js
+play.pokemonshowdown.com/testclient.html
+build-tools/build-indexes
