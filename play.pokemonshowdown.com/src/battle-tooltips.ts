@@ -2258,7 +2258,8 @@ export class BattleTooltips {
 		}
 
 		// Burn isn't really a base power modifier, so it needs to be applied after the Tera BP floor
-		if (this.battle.gen > 2 && serverPokemon.status === 'brn' && move.id !== 'facade' && move.category === 'Physical') {
+		if (this.battle.gen > 2 && serverPokemon.status === 'brn' && move.id !== 'facade' && move.id !== 'barbaricincision' 
+			&& move.category === 'Physical') {
 			if (!value.tryAbility("Guts")) value.modify(0.5, 'Burn');
 		}
 
