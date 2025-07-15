@@ -1930,6 +1930,9 @@ export class BattleTooltips {
 		if (move.id === 'facade' && !['', 'slp', 'frz'].includes(pokemon.status)) {
 			value.modify(2, 'Facade + status');
 		}
+		if (move.id === 'barbaricincision' && !['', 'slp', 'frz'].includes(pokemon.status)) {
+			value.modify(2, 'Barbaric Incision + status');
+		}
 		if (move.id === 'flail' || move.id === 'reversal') {
 			let multiplier;
 			let ratios;
