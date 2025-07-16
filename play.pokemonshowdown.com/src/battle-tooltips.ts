@@ -314,7 +314,7 @@ export class BattleTooltips {
 				const species = pokemon.getSpecies();
 				let index = 1;
 				for (const otherPokemon of side.pokemon) {
-					if (otherPokemon.getSpecies() === species) {
+					if (otherPokemon.getSpecies() === species.name) {
 						buf += this.showPokemonTooltip(otherPokemon, null, false, index);
 						index++;
 					}

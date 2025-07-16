@@ -634,9 +634,9 @@ export class BattleScene implements BattleSceneStub {
 		if (speciesOverage) {
 			for (let i = 0; i < side.pokemon.length; i++) {
 				const species = side.pokemon[i].getSpecies();
-				if (speciesOverage && speciesTable.includes(species)) {
+				if (speciesOverage && speciesTable.includes(species.name)) {
 					for (const sidebarIcon of sidebarIcons) {
-						if (side.pokemon[sidebarIcon[1]!].getSpecies() === species) {
+						if (side.pokemon[sidebarIcon[1]!].getSpecies() === species.name) {
 							sidebarIcon[0] = 'pokemon-illusion';
 						}
 					}
