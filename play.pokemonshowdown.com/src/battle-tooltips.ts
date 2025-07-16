@@ -311,10 +311,10 @@ export class BattleTooltips {
 			let pokemon = side.pokemon[parseInt(args[2], 10)];
 			if (args[3] === 'illusion') {
 				buf = '';
-				const species = pokemon.getBaseSpecies().baseSpecies;
+				const species = pokemon.getSpecies();
 				let index = 1;
 				for (const otherPokemon of side.pokemon) {
-					if (otherPokemon.getBaseSpecies().baseSpecies === species) {
+					if (otherPokemon.getSpecies() === species) {
 						buf += this.showPokemonTooltip(otherPokemon, null, false, index);
 						index++;
 					}
