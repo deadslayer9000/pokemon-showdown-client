@@ -1346,6 +1346,7 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		const abilityItem = {
 			protosynthesis: 'boosterenergy',
 			quarkdrive: 'boosterenergy',
+			chronocatalyst: 'boosterenergy',
 			// poisonheal: 'toxicorb',
 			// toxicboost: 'toxicorb',
 			// flareboost: 'flameorb',

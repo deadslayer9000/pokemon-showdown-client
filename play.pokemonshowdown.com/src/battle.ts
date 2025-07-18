@@ -449,6 +449,7 @@ export class Pokemon implements PokemonDetails, PokemonHealth {
 			for (const statName of Dex.statNamesExceptHP) {
 				volatilesToRemove.push('protosynthesis' + statName);
 				volatilesToRemove.push('quarkdrive' + statName);
+				volatilesToRemove.push('chronocatalyst' + statName);
 			}
 			for (const volatile of volatilesToRemove) {
 				delete this.volatiles[volatile];
@@ -2732,7 +2733,7 @@ export class Battle {
 			let fromeffect = Dex.getEffect(kwArgs.from);
 			poke.removeVolatile(effect.id);
 
-			if (kwArgs.silent && !(effect.id === 'protosynthesis' || effect.id === 'quarkdrive')) {
+			if (kwArgs.silent && !(effect.id === 'protosynthesis' || effect.id === 'quarkdrive' || effect.id === 'chronocatalyst')) {
 				// do nothing
 			} else {
 				switch (effect.id) {
@@ -2814,6 +2815,12 @@ export class Battle {
 					poke.removeVolatile('quarkdrivespd' as ID);
 					poke.removeVolatile('quarkdrivespe' as ID);
 					break;
+				case 'chronocatalyst':
+					poke.removeVolatile('chronocatalystatk' as ID);
+					poke.removeVolatile('chronocatalystdef' as ID);
+					poke.removeVolatile('chronocatalystspa' as ID);
+					poke.removeVolatile('chronocatalystspd' as ID);
+					poke.removeVolatile('chronocatalystspe' as ID);
 				default:
 					if (effect.effectType === 'Move') {
 						if (effect.name === 'Doom Desire') {
