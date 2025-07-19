@@ -961,6 +961,12 @@ export const BattleMoveAnims: AnimTable = {
 			BattleOtherAnims.dance.anim(scene, [attacker]);
 		},
 	},
+	corrosiveterrain: {
+		anim(scene, [attacker]) {
+			scene.backgroundEffect('#6600ffff', 1000, 0.3);
+			BattleOtherAnims.dance.anim(scene, [attacker]);
+		}
+	},
 	grassyterrain: {
 		anim(scene, [attacker]) {
 			scene.backgroundEffect('#9AB440', 1000, 0.3);
