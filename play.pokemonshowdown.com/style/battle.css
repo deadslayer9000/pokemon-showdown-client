@@ -465,7 +465,7 @@ License: GPLv2
 	color: #441155;
 }
 .corrosiveterrainweather {
-	background: #6600FFFF url(../fx/weather-corrosiveterrain.png) no-repeat scroll left top;
+	background: #6600FF url(../fx/weather-corrosiveterrain.png) no-repeat scroll left top;
 	color: #6600FF55;
 }
 .gravityweather {
