@@ -626,6 +626,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	shox: 1512 + 75,
 	chuggon: 1512 + 76,
 	draggalong: 1512 + 77,
+	//Delta mons
+	cosmachi: 1596 + 0,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {

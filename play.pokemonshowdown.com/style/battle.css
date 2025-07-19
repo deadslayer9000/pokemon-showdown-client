@@ -464,6 +464,10 @@ License: GPLv2
 	background: #CCAAEE url(../fx/weather-psychicterrain.png) no-repeat scroll left top;
 	color: #441155;
 }
+.corrosiveterrainweather {
+	background: #6600FF url(../fx/weather-corrosiveterrain.png) no-repeat scroll left top;
+	color: #6600FF55;
+}
 .gravityweather {
 	background: #DDAAEE url(../fx/weather-gravity.png) no-repeat scroll left top;
 	color: #661155;

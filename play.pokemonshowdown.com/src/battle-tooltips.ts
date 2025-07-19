@@ -311,10 +311,10 @@ export class BattleTooltips {
 			let pokemon = side.pokemon[parseInt(args[2], 10)];
 			if (args[3] === 'illusion') {
 				buf = '';
-				const species = pokemon.getBaseSpecies().baseSpecies;
+				const species = pokemon.getSpecies();
 				let index = 1;
 				for (const otherPokemon of side.pokemon) {
-					if (otherPokemon.getBaseSpecies().baseSpecies === species) {
+					if (otherPokemon.getSpecies() === species.name) {
 						buf += this.showPokemonTooltip(otherPokemon, null, false, index);
 						index++;
 					}
@@ -682,8 +682,10 @@ export class BattleTooltips {
 					calls = 'Moonblast';
 				} else if (this.battle.hasPseudoWeather('Psychic Terrain')) {
 					calls = 'Psychic';
+				} else if (this.battle.hasPseudoWeather('Corrosive Terrain')) {
+					calls = 'Sludge Wave';
 				} else {
-					calls = 'Tri Attack';
+					calls = 'Tri Attack'
 				}
 			} else if (this.battle.gen > 3) {
 				// In gens 4 and 5 it calls Earthquake.
@@ -1615,6 +1617,8 @@ export class BattleTooltips {
 				moveType = 'Fairy';
 			} else if (this.battle.hasPseudoWeather('Psychic Terrain')) {
 				moveType = 'Psychic';
+			} else if (this.battle.hasPseudoWeather('Corrosive Terrain')) {
+				moveType = 'Poison';
 			}
 		}
 		if (move.id === 'terablast' && pokemon.terastallized) {
@@ -2016,7 +2020,8 @@ export class BattleTooltips {
 				this.battle.hasPseudoWeather('Electric Terrain') ||
 				this.battle.hasPseudoWeather('Grassy Terrain') ||
 				this.battle.hasPseudoWeather('Misty Terrain') ||
-				this.battle.hasPseudoWeather('Psychic Terrain')
+				this.battle.hasPseudoWeather('Psychic Terrain') ||
+				this.battle.hasPseudoWeather('Corrosive Terrain')
 			) {
 				value.modify(2, 'Terrain Pulse boost');
 			}
@@ -2229,6 +2234,10 @@ export class BattleTooltips {
 			if (target ? target.isGrounded() : true) {
 				value.modify(0.5, 'Grassy Terrain + grounded target');
 			}
+		} else if (this.battle.hasPseudoWeather('Corrosive Terrain') && moveType === 'Steel') {
+			if (target ? target.isGrounded() : true) {
+				value.modify(0.5, 'Corrosive Terrain + grounded target');
+			}
 		}
 		if (
 			move.id === 'expandingforce' &&
@@ -2268,7 +2277,8 @@ export class BattleTooltips {
 			!this.battle.hasPseudoWeather('Electric Terrain') &&
 			!this.battle.hasPseudoWeather('Grassy Terrain') &&
 			!this.battle.hasPseudoWeather('Misty Terrain') &&
-			!this.battle.hasPseudoWeather('Psychic Terrain')
+			!this.battle.hasPseudoWeather('Psychic Terrain') &&
+			!this.battle.hasPseudoWeather('Corrosive Terrain')
 		) {
 			value.set(0, 'no Terrain');
 		}
