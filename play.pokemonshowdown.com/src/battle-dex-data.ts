@@ -628,7 +628,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	draggalong: 1512 + 77,
 	//Delta mons
 	cosmachi: 1596 + 0,
-		deltaaegislash: 1596 + 1,
+	deltaaegislash: 1596 + 1,
 	deltaambipom: 1596 + 2,
 	ultraambipom: 1596 + 3,
 	ancientgene:  1596 + 4,
