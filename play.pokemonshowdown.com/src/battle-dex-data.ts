@@ -765,7 +765,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	zoroarkhisuimega: 1596 + 134,
 	zorotales: 1596 + 135,
 };
-//s
+//test
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
 	pikachubelle: 1404 + 0,
 	pikachupopstar: 1404 + 1,
