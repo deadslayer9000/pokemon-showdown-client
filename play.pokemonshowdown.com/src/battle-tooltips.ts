@@ -1070,7 +1070,7 @@ export class BattleTooltips {
 			} else if (this.battle.gen < 2 && pokemon.status === 'brn') {
 				stats.atk = Math.floor(stats.atk * 0.5);
 			} else if (this.battle.gen < 2 && ability === 'vorpal') {
-				stats.spe = Math.floor(stats.spe & 1.5);
+				stats.spe = Math.floor(stats.spe * 1.5);
 			}
 
 			// Paralysis is calculated later in newer generations, so we need to apply it early here
@@ -2271,7 +2271,7 @@ export class BattleTooltips {
 		// Burn isn't really a base power modifier, so it needs to be applied after the Tera BP floor
 		if (this.battle.gen > 2 && serverPokemon.status === 'brn' && move.id !== 'facade' && move.id !== 'barbaricincision' 
 			&& move.category === 'Physical') {
-			if (!value.tryAbility("Guts")) value.modify(0.5, 'Burn');
+			if (!value.tryAbility("Guts") && !value.tryAbility("Vorpal")) value.modify(0.5, 'Burn');
 		}
 
 		if (
