@@ -1069,6 +1069,8 @@ export class BattleTooltips {
 				stats.atk = Math.floor(stats.atk * 1.5);
 			} else if (this.battle.gen < 2 && pokemon.status === 'brn') {
 				stats.atk = Math.floor(stats.atk * 0.5);
+			} else if (this.battle.gen < 2 && ability === 'vorpal') {
+				stats.spe = Math.floor(stats.spe & 1.5);
 			}
 
 			// Paralysis is calculated later in newer generations, so we need to apply it early here
