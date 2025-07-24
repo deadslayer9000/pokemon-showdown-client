@@ -1069,9 +1069,7 @@ export class BattleTooltips {
 				stats.atk = Math.floor(stats.atk * 1.5);
 			} else if (this.battle.gen < 2 && pokemon.status === 'brn') {
 				stats.atk = Math.floor(stats.atk * 0.5);
-			} else if (this.battle.gen < 2 && ability === 'vorpal') {
-				stats.spe = Math.floor(stats.spe * 1.5);
-			}
+			} 
 
 			// Paralysis is calculated later in newer generations, so we need to apply it early here
 			if (this.battle.gen <= 2 && pokemon.status === 'par') {
@@ -1225,6 +1223,9 @@ export class BattleTooltips {
 			if (ability === 'quickfeet') {
 				speedModifiers.push(1.5);
 			}
+			if (ability === 'vorpal') {
+				speedModifiers.push(1.5);
+			}
 		}
 		if (item === 'eviolite' && this.battle.dex.species.get(serverPokemon.speciesForme).nfe) {
 			stats.def = Math.floor(stats.def * 1.5);
@@ -1300,7 +1301,6 @@ export class BattleTooltips {
 				stats.spd = Math.floor(stats.spd * 0.75);
 			}
 		}
-
 		// SSB
 		if (this.battle.tier.includes('Super Staff Bros')) {
 			if (pokemon.name === 'Felucia') {
