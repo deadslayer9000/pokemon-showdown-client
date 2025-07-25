@@ -2254,6 +2254,9 @@ export class BattleTooltips {
 		if (move.id === 'risingvoltage' && this.battle.hasPseudoWeather('Electric Terrain') && target?.isGrounded()) {
 			value.modify(2, 'Rising Voltage + Electric Terrain boost');
 		}
+		if (move.id === 'noxiouspower' && this.battle.hasPseudoWeather('Corrosive Terrain') && target?.isGrounded()) {
+			value.modify(2, 'Noxious Power + Corrosive Terrain boost');
+		}
 
 		// Item
 		value = this.getItemBoost(move, value, moveType);
