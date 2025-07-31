@@ -1585,6 +1585,9 @@ export class BattleTooltips {
 		if (move.id === 'technoblast' && item.onDrive) {
 			if (value.itemModify(0)) moveType = item.onDrive;
 		}
+		if (move.id === 'technobeam' && item.onDrive) {
+			if (value.itemModify(0)) moveType = item.onDrive;
+		}
 		if (move.id === 'naturalgift' && item.naturalGift) {
 			if (value.itemModify(0)) moveType = item.naturalGift.type;
 		}
