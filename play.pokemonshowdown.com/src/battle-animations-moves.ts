@@ -32277,7 +32277,7 @@ export const BattleMoveAnims: AnimTable = {
 				opacity: 0.5,
 				time: 900,
 			}, 'decel', 'fade');
-			scene.showEffect('poisonwisp', {
+			scene.showEffect('poisonwisp', {	
 				x: attacker.x,
 				y: attacker.y,
 				z: attacker.z,
@@ -36709,40 +36709,69 @@ export const BattleMoveAnims: AnimTable = {
 	},
 //unique delta move definitions
 	blazeout: {
-		anim(scene, [attacker, defender]) {
-			scene.backgroundEffect('#000000', 750, 1, 50);
-			if (attacker.sp.url) {
-				const url = attacker.sp.url;
-				const sprite = {
-					url: url.replace('-back', ''),
-					w: attacker.sp.w,
-					h: attacker.sp.h,
-				};
-				scene.showEffect(sprite, {
-					x: scene.battle.mySide.x + 65,
-					y: scene.battle.mySide.y + 65,
-					z: scene.battle.mySide.z,
-					scale: 1.5,
-					opacity: 1,
-					time: 50,
-				}, {
-					opacity: 0,
-					time: 800,
-				}, 'decel');
-				sprite.url = url;
-				scene.showEffect(sprite, {
-					x: scene.battle.mySide.x + 65,
-					y: scene.battle.mySide.y + 65,
-					z: scene.battle.mySide.z,
-					scale: 1.5,
-					opacity: 0,
-					time: 800,
-				}, {
-					opacity: 1,
-					time: 1550,
-				}, 'decel');
-			}
-			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sunnyday.png')`, 750, 1, 800);
+		anim(scene, [attacker]) {
+			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sunnyday.jpg')`, 900, 0.5);
+			BattleOtherAnims.shake.anim(scene, [attacker]);
+			scene.showEffect('fireball', {
+				x: attacker.x + 40,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 0,
+			}, {
+				y: attacker.y + 60,
+				opacity: 0,
+				time: 400,
+			}, 'accel');
+			scene.showEffect('fireball', {
+				x: attacker.x + 20,
+				y: attacker.y - 20,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 0,
+			}, {
+				y: attacker.y + 60,
+				opacity: 0,
+				time: 500,
+			}, 'accel');
+			scene.showEffect('fireball', {
+				x: attacker.x - 40,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 200,
+			}, {
+				y: attacker.y + 60,
+				opacity: 0,
+				time: 600,
+			}, 'accel');
+			scene.showEffect('fireball', {
+				x: attacker.x - 20,
+				y: attacker.y - 20,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 0,
+			}, {
+				y: attacker.y + 60,
+				opacity: 0,
+				time: 300,
+			}, 'accel');
+			scene.showEffect('fireball', {
+				x: attacker.x,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 700,
+			}, {
+				y: attacker.y + 60,
+				opacity: 0,
+				time: 800,
+			}, 'accel');
 		},
 	},
 };
