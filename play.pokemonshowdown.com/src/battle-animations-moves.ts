@@ -37176,4 +37176,15 @@ BattleMoveAnims['psyblade'] = { anim: BattleMoveAnims['psychocut'].anim };
 BattleMoveAnims['technobeam'] = { anim: BattleMoveAnims['hyperbeam'].anim};
 BattleMoveAnims['etherburst'] = { anim: BattleMoveAnims['psybeam'].anim};
 BattleMoveAnims['newmoon'] = { anim: BattleMoveAnims['moonblast'].anim};
+BattleMoveAnims['tachyoncutter'] = {anim: BattleMoveAnims['furycutter'].anim};
+BattleMoveAnims['dualdivide'] = {anim: BattleMoveAnims['furycutter'].anim};
+BattleMoveAnims['crescentedge'] = {anim: BattleMoveAnims['cut'].anim};
+BattleMoveAnims['indigoimpact'] = {anim: BattleMoveAnims['wavecrash'].anim};
+BattleMoveAnims['amberassault'] = {anim: BattleMoveAnims['wildcharge'].anim};
+BattleMoveAnims['crimsoncharge'] = {anim: BattleMoveAnims['flareblitz'].anim};
+BattleMoveAnims['cataclench'] = {anim: BattleMoveAnims['crunch'].anim};
+BattleMoveAnims['steelskewer'] = {anim: BattleMoveAnims['gmaxsteelsurge'].anim};
+
+
+
 
