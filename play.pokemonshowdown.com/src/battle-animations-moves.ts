@@ -36716,7 +36716,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: attacker.x + 40,
 				y: attacker.y - 40,
 				z: attacker.z,
-				scale: 0.2,
+				scale: 0.6,
 				opacity: 1,
 				time: 0,
 			}, {
@@ -36728,7 +36728,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: attacker.x + 20,
 				y: attacker.y - 20,
 				z: attacker.z,
-				scale: 0.2,
+				scale: 0.6,
 				opacity: 1,
 				time: 0,
 			}, {
@@ -36740,7 +36740,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: attacker.x - 40,
 				y: attacker.y - 40,
 				z: attacker.z,
-				scale: 0.2,
+				scale: 0.6,
 				opacity: 1,
 				time: 200,
 			}, {
@@ -36752,7 +36752,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: attacker.x - 20,
 				y: attacker.y - 20,
 				z: attacker.z,
-				scale: 0.2,
+				scale: 0.6,
 				opacity: 1,
 				time: 0,
 			}, {
@@ -36764,7 +36764,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: attacker.x,
 				y: attacker.y - 40,
 				z: attacker.z,
-				scale: 0.2,
+				scale: 0.6,
 				opacity: 1,
 				time: 700,
 			}, {
