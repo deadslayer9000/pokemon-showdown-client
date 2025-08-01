@@ -36707,8 +36707,45 @@ export const BattleMoveAnims: AnimTable = {
 			}
 		},
 	},
+//unique delta move definitions
+	blazeout: {
+		anim(scene, [attacker, defender]) {
+			scene.backgroundEffect('#000000', 750, 1, 50);
+			if (attacker.sp.url) {
+				const url = attacker.sp.url;
+				const sprite = {
+					url: url.replace('-back', ''),
+					w: attacker.sp.w,
+					h: attacker.sp.h,
+				};
+				scene.showEffect(sprite, {
+					x: scene.battle.mySide.x + 65,
+					y: scene.battle.mySide.y + 65,
+					z: scene.battle.mySide.z,
+					scale: 1.5,
+					opacity: 1,
+					time: 50,
+				}, {
+					opacity: 0,
+					time: 800,
+				}, 'decel');
+				sprite.url = url;
+				scene.showEffect(sprite, {
+					x: scene.battle.mySide.x + 65,
+					y: scene.battle.mySide.y + 65,
+					z: scene.battle.mySide.z,
+					scale: 1.5,
+					opacity: 0,
+					time: 800,
+				}, {
+					opacity: 1,
+					time: 1550,
+				}, 'decel');
+			}
+			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sunnyday.png')`, 750, 1, 800);
+		},
+	},
 };
-
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
 
@@ -37108,3 +37145,6 @@ BattleMoveAnims['hydrosteam'] = { anim: BattleMoveAnims['steameruption'].anim };
 BattleMoveAnims['psyblade'] = { anim: BattleMoveAnims['psychocut'].anim };
 // delta showdown definitions
 BattleMoveAnims['technobeam'] = { anim: BattleMoveAnims['hyperbeam'].anim};
+BattleMoveAnims['etherburst'] = { anim: BattleMoveAnims['psybeam'].anim};
+BattleMoveAnims['newmoon'] = { anim: BattleMoveAnims['moonblast'].anim};
+
