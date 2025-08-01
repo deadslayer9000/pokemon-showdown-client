@@ -37250,7 +37250,6 @@ BattleMoveAnims['psyblade'] = { anim: BattleMoveAnims['psychocut'].anim };
 // delta showdown definitions
 BattleMoveAnims['technobeam'] = { anim: BattleMoveAnims['hyperbeam'].anim};
 BattleMoveAnims['etherburst'] = { anim: BattleMoveAnims['psybeam'].anim};
-BattleMoveAnims['newmoon'] = { anim: BattleMoveAnims['moonblast'].anim};
 BattleMoveAnims['tachyoncutter'] = {anim: BattleMoveAnims['furycutter'].anim};
 BattleMoveAnims['dualdivide'] = {anim: BattleMoveAnims['furycutter'].anim};
 BattleMoveAnims['crescentedge'] = {anim: BattleMoveAnims['cut'].anim};
