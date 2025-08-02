@@ -37546,7 +37546,14 @@ BattleMoveAnims['steelskewer'] = {anim: BattleMoveAnims['gmaxsteelsurge'].anim};
 BattleMoveAnims['adamantinemolars'] = {anim: BattleMoveAnims['crunch'].anim};
 BattleMoveAnims['floridpuff'] = {anim: BattleMoveAnims['pollenpuff'].anim};
 BattleMoveAnims['verdantflush'] = {anim: BattleMoveAnims['petaldance'].anim};
-BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
+BattleMoveAnims['crimsonstorm'] = {anim: BattleMoveAnims['outrage'].anim};
+BattleMoveAnims['cataclysmictyphoon'] = {
+	anim(scene, [attacker, defender]) {
+		BattleMoveAnims['thunder'].anim(scene, [attacker, defender]);
+		BattleMoveAnims['hurricane'].anim(scene, [attacker, defender]);
+	},
+};
+
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
