@@ -37551,6 +37551,7 @@ BattleMoveAnims['cataclysmictyphoon'] = {
 	anim(scene, [attacker, defender]) {
 		BattleMoveAnims['thunder'].anim(scene, [attacker, defender]);
 		BattleMoveAnims['hurricane'].anim(scene, [attacker, defender]);
+		BattleMoveAnims['waterspout'].anim(scene, [attacker, defender]);
 	},
 };
 
