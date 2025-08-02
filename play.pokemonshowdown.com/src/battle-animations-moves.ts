@@ -37685,7 +37685,7 @@ BattleMoveAnims['cataclysmictyphoon'] = {
 		BattleMoveAnims['waterspout'].anim(scene, [attacker, defender]);
 	},
 };
-
+BattleMoveAnims['pollenbloom'] = {anim: BattleMoveAnims['solarbeam'].anim};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
