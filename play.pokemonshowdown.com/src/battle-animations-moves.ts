@@ -37087,6 +37087,53 @@ export const BattleMoveAnims: AnimTable = {
 			});
 		},
 	},
+	whiskaway: {
+		anim(scene, [attacker, defender]) {
+			scene.backgroundEffect('#38296eff', 500, 0.3 )
+			scene.showEffect('shadowball', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 0.6,
+				time: 0,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 500,
+				opacity: 0,
+			}, 'ballistic2');
+			scene.showEffect('shadowball', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 0.6,
+				time: 50,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 550,
+				opacity: 0,
+			}, 'linear');
+			scene.showEffect('shadowball', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 0.6,
+				time: 100,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 600,
+				opacity: 0,
+			}, 'ballistic2Under');
+		},
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
@@ -37497,7 +37544,9 @@ BattleMoveAnims['crimsoncharge'] = {anim: BattleMoveAnims['flareblitz'].anim};
 BattleMoveAnims['cataclench'] = {anim: BattleMoveAnims['crunch'].anim};
 BattleMoveAnims['steelskewer'] = {anim: BattleMoveAnims['gmaxsteelsurge'].anim};
 BattleMoveAnims['adamantinemolars'] = {anim: BattleMoveAnims['crunch'].anim};
-
-
+BattleMoveAnims['floridpuff'] = {anim: BattleMoveAnims['pollenpuff'].anim};
+BattleMoveAnims['verdantflush'] = {anim: BattleMoveAnims['petaldance'].anim};
+BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
+//BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
