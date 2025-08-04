@@ -37287,7 +37287,20 @@ export const BattleMoveAnims: AnimTable = {
 				}, 'linear');
 			}
 
-			
+			scene.showEffect('electroball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.75,
+				opacity: 0.6,
+			}, {
+				x: attacker.x,
+				y: attacker.y + 200,
+				z: attacker.z,
+				scale: 1.25,
+				opacity: 0,
+				time: 200,
+			}, 'decel');
 			scene.showEffect('flareball', {
 				x: attacker.x,
 				y: attacker.y + 200,
@@ -37296,12 +37309,12 @@ export const BattleMoveAnims: AnimTable = {
 				opacity: 0.6,
 				time: 575,
 			}, {
-				x: defender.x - 20,
+				x: defender.x,
 				y: defender.y,
 				z: defender.z,
 				scale: 1.2,
 				opacity: 0.3,
-				time: 1000,
+				time: 775,
 			}, 'linear', 'explode');
 		},
 	},
