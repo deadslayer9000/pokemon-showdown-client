@@ -37293,14 +37293,14 @@ export const BattleMoveAnims: AnimTable = {
 				z: attacker.z,
 				scale: 0.4,
 				opacity: 0.6,
-				time: 575,
+				time: 300,
 			}, {
 				x: defender.x,
 				y: defender.y,
 				z: defender.z,
 				scale: 1.2,
 				opacity: 0.3,
-				time: 775,
+				time: 500,
 			}, 'linear', 'explode');
 		},
 	},
