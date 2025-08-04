@@ -37273,20 +37273,6 @@ export const BattleMoveAnims: AnimTable = {
 
 			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sandstorm.png')`, 900, 0.5);
 
-			for (let i = 0; i < 5; i++) {
-				scene.showEffect('mudwisp', {
-					x: attacker.x + xstep * (i + 1),
-					y: (attacker.y + 200) + ystep * (i + 1),
-					z: attacker.z + zstep * (i + 1),
-					scale: 0.7,
-					opacity: 0.6,
-					time: 40 * i + 300,
-				}, {
-					opacity: 0,
-					time: 100 * i + 500,
-				}, 'linear');
-			}
-
 			scene.showEffect('electroball', {
 				x: attacker.x,
 				y: attacker.y,
@@ -37301,7 +37287,7 @@ export const BattleMoveAnims: AnimTable = {
 				opacity: 0,
 				time: 200,
 			}, 'decel');
-			scene.showEffect('flareball', {
+			scene.showEffect('electroball', {
 				x: attacker.x,
 				y: attacker.y + 200,
 				z: attacker.z,
@@ -37318,6 +37304,51 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'linear', 'explode');
 		},
 	},
+	heatsiphon: {
+		anim(scene, [attacker, defender]) {
+			scene.backgroundEffect('#d5930eff', 1000, 0.3 );
+
+			scene.showEffect('wisp', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.3,
+				time: 200,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.3,
+				time: 600,
+			}, 'accel',);
+			scene.showEffect('wisp', {
+				x: defender.x + 20,
+				y: defender.y - 10,
+				z: defender.z - 10,
+				scale: 0.3,
+				time: 400,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.y,
+				scale: 0.3,
+				time: 800,
+			}, 'accel',);
+			scene.showEffect('wisp', {
+				x: defender.x - 20,
+				y: defender.y + 10,
+				z: defender.z + 10,
+				scale: 0.3,
+				time: 600,
+			}, {
+				x: attacker.x,
+				y: attacker.y, 
+				z: attacker.y,
+				scale: 0.3,
+				time: 1000,
+			}, 'accel',);
+		}
+	}
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
@@ -37754,7 +37785,8 @@ BattleMoveAnims['colddeparture'] = {anim: BattleMoveAnims['partingshot'].anim};
 BattleMoveAnims['dragondrive'] = {anim: BattleMoveAnims['bide'].anim};
 BattleMoveAnims['shockingblow'] = {anim: BattleMoveAnims['spark'].anim};
 BattleMoveAnims['sandstormfury'] = {anim: BattleMoveAnims['sandsearstorm'].anim};
-BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
+BattleMoveAnims['wretchedstab'] = {anim: BattleMoveAnims['poisonjab'].anim};
+
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
