@@ -37686,6 +37686,11 @@ BattleMoveAnims['cataclysmictyphoon'] = {
 	},
 };
 BattleMoveAnims['pollenbloom'] = {anim: BattleMoveAnims['solarbeam'].anim};
+BattleMoveAnims['phantasmalvoyage'] = {anim: BattleMoveAnims['infernalparade'].anim};
+BattleMoveAnims['tribeam'] = {anim: BattleMoveAnims['triattack'].anim};
+BattleMoveAnims['foamfrenzy'] = {anim: BattleMoveAnims['pearlyparade'].anim};
+BattleMoveAnims['timelesstorrent'] = {anim: BattleMoveAnims['roaroftime'].anim};
+BattleMoveAnims['eonrift'] = {anim: BattleMoveAnims[''].anim};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
