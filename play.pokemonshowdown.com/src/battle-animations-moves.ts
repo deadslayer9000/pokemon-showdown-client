@@ -37347,8 +37347,8 @@ export const BattleMoveAnims: AnimTable = {
 				scale: 0.3,
 				time: 1000,
 			}, 'accel',);
-		}
-	}
+		},
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
