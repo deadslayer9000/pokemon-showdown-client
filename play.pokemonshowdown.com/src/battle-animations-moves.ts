@@ -37265,6 +37265,90 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'decel', 'explode');
 		},
 	},
+	sandstormsphere: {
+		anim(scene, [attacker, defender]) {
+			let xstep = (defender.x - attacker.x) / 5;
+			let ystep = (defender.x - 200 - attacker.x) / 5;
+			let zstep = (defender.z - attacker.z) / 5;
+
+			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sandstorm.png')`, 900, 0.5);
+
+			scene.showEffect('electroball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.75,
+				opacity: 0.6,
+			}, {
+				x: attacker.x,
+				y: attacker.y + 200,
+				z: attacker.z,
+				scale: 1.25,
+				opacity: 0,
+				time: 200,
+			}, 'decel');
+			scene.showEffect('electroball', {
+				x: attacker.x,
+				y: attacker.y + 200,
+				z: attacker.z,
+				scale: 0.4,
+				opacity: 0.6,
+				time: 300,
+			}, {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 1.2,
+				opacity: 0.3,
+				time: 500,
+			}, 'linear', 'explode');
+		},
+	},
+	heatsiphon: {
+		anim(scene, [attacker, defender]) {
+			scene.backgroundEffect('#d5930eff', 1000, 0.3 );
+
+			scene.showEffect('wisp', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				time: 200,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.3,
+				time: 600,
+			}, 'accel', 'fade');
+			scene.showEffect('wisp', {
+				x: defender.x + 20,
+				y: defender.y - 10,
+				z: defender.z - 10,
+				scale: 0.6,
+				time: 400,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.y,
+				scale: 0.3,
+				time: 800,
+			}, 'accel', 'fade');
+			scene.showEffect('wisp', {
+				x: defender.x - 20,
+				y: defender.y + 10,
+				z: defender.z + 10,
+				scale: 0.6,
+				time: 600,
+			}, {
+				x: attacker.x,
+				y: attacker.y, 
+				z: attacker.y,
+				scale: 0.,
+				time: 1000,
+			}, 'accel', 'fade');
+		},
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
@@ -37686,6 +37770,23 @@ BattleMoveAnims['cataclysmictyphoon'] = {
 	},
 };
 BattleMoveAnims['pollenbloom'] = {anim: BattleMoveAnims['solarbeam'].anim};
+BattleMoveAnims['phantasmalvoyage'] = {anim: BattleMoveAnims['infernalparade'].anim};
+BattleMoveAnims['tribeam'] = {anim: BattleMoveAnims['triattack'].anim};
+BattleMoveAnims['foamfrenzy'] = {anim: BattleMoveAnims['pearlyparade'].anim};
+BattleMoveAnims['timelesstorrent'] = {anim: BattleMoveAnims['roaroftime'].anim};
+BattleMoveAnims['eonrift'] = {
+	anim(scene, [attacker, defender]) {
+		BattleMoveAnims['roaroftime'].anim(scene, [attacker, defender]);
+		BattleMoveAnims['photongeyser'].anim(scene, [attacker, defender]);
+	},
+};
+BattleMoveAnims['icemace'] = {anim: BattleMoveAnims['icehammer'].anim};
+BattleMoveAnims['colddeparture'] = {anim: BattleMoveAnims['partingshot'].anim};
+BattleMoveAnims['dragondrive'] = {anim: BattleMoveAnims['bide'].anim};
+BattleMoveAnims['shockingblow'] = {anim: BattleMoveAnims['spark'].anim};
+BattleMoveAnims['sandstormfury'] = {anim: BattleMoveAnims['sandsearstorm'].anim};
+BattleMoveAnims['wretchedstab'] = {anim: BattleMoveAnims['poisonjab'].anim};
+
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
