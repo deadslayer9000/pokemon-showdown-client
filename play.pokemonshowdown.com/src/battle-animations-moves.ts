@@ -37265,6 +37265,46 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'decel', 'explode');
 		},
 	},
+	sandstormsphere: {
+		anim(scene, [attacker, defender]) {
+			let xstep = (defender.x - attacker.x) / 5;
+			let ystep = (defender.x - 200 - attacker.x) / 5;
+			let zstep = (defender.z - attacker.z) / 5;
+
+			scene.backgroundEffect(`url('https://${Config.routes.client}/fx/weather-sandstorm.png')`, 900, 0.5);
+
+			for (let i = 0; i < 5; i++) {
+				scene.showEffect('mudwisp', {
+					x: attacker.x + xstep * (i + 1),
+					y: (attacker.y + 200) + ystep * (i + 1),
+					z: attacker.z + zstep * (i + 1),
+					scale: 0.7,
+					opacity: 0.6,
+					time: 40 * i + 300,
+				}, {
+					opacity: 0,
+					time: 100 * i + 500,
+				}, 'linear');
+			}
+
+			
+			scene.showEffect('flareball', {
+				x: attacker.x,
+				y: attacker.y + 200,
+				z: attacker.z,
+				scale: 0.4,
+				opacity: 0.6,
+				time: 575,
+			}, {
+				x: defender.x - 20,
+				y: defender.y,
+				z: defender.z,
+				scale: 1.2,
+				opacity: 0.3,
+				time: 1000,
+			}, 'linear', 'explode');
+		},
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
@@ -37690,7 +37730,18 @@ BattleMoveAnims['phantasmalvoyage'] = {anim: BattleMoveAnims['infernalparade'].a
 BattleMoveAnims['tribeam'] = {anim: BattleMoveAnims['triattack'].anim};
 BattleMoveAnims['foamfrenzy'] = {anim: BattleMoveAnims['pearlyparade'].anim};
 BattleMoveAnims['timelesstorrent'] = {anim: BattleMoveAnims['roaroftime'].anim};
-BattleMoveAnims['eonrift'] = {anim: BattleMoveAnims[''].anim};
+BattleMoveAnims['eonrift'] = {
+	anim(scene, [attacker, defender]) {
+		BattleMoveAnims['roaroftime'].anim(scene, [attacker, defender]);
+		BattleMoveAnims['photongeyser'].anim(scene, [attacker, defender]);
+	},
+};
+BattleMoveAnims['icemace'] = {anim: BattleMoveAnims['icehammer'].anim};
+BattleMoveAnims['colddeparture'] = {anim: BattleMoveAnims['partingshot'].anim};
+BattleMoveAnims['dragondrive'] = {anim: BattleMoveAnims['bide'].anim};
+BattleMoveAnims['shockingblow'] = {anim: BattleMoveAnims['spark'].anim};
+BattleMoveAnims['sandstormfury'] = {anim: BattleMoveAnims['sandsearstorm'].anim};
+BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
