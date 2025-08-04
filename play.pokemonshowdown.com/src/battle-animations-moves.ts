@@ -37312,7 +37312,7 @@ export const BattleMoveAnims: AnimTable = {
 				x: defender.x,
 				y: defender.y,
 				z: defender.z,
-				scale: 0.3,
+				scale: 0.6,
 				time: 200,
 			}, {
 				x: attacker.x,
@@ -37320,12 +37320,12 @@ export const BattleMoveAnims: AnimTable = {
 				z: attacker.z,
 				scale: 0.3,
 				time: 600,
-			}, 'accel',);
+			}, 'accel', 'fade');
 			scene.showEffect('wisp', {
 				x: defender.x + 20,
 				y: defender.y - 10,
 				z: defender.z - 10,
-				scale: 0.3,
+				scale: 0.6,
 				time: 400,
 			}, {
 				x: attacker.x,
@@ -37333,20 +37333,20 @@ export const BattleMoveAnims: AnimTable = {
 				z: attacker.y,
 				scale: 0.3,
 				time: 800,
-			}, 'accel',);
+			}, 'accel', 'fade');
 			scene.showEffect('wisp', {
 				x: defender.x - 20,
 				y: defender.y + 10,
 				z: defender.z + 10,
-				scale: 0.3,
+				scale: 0.6,
 				time: 600,
 			}, {
 				x: attacker.x,
 				y: attacker.y, 
 				z: attacker.y,
-				scale: 0.3,
+				scale: 0.,
 				time: 1000,
-			}, 'accel',);
+			}, 'accel', 'fade');
 		},
 	},
 };
