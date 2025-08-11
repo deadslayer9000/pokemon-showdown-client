@@ -98,6 +98,7 @@ export class DexSearch {
 		case 'ability': return new BattleAbilitySearch('ability', format, speciesOrSet);
 		case 'type': return new BattleTypeSearch('type', format, speciesOrSet);
 		case 'category': return new BattleCategorySearch('category', format, speciesOrSet);
+		case 'color': return new BattleColorSearch('color', format, speciesOrSet);
 		}
 		return null;
 	}
