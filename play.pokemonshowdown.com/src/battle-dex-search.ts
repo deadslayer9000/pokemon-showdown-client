@@ -14,7 +14,7 @@
 import { Dex, type ModdedDex, toID, type ID } from "./battle-dex";
 
 export type SearchType = (
-	'pokemon' | 'type' | 'tier' | 'move' | 'item' | 'ability' | 'egggroup' | 'category' | 'article' | 'color'
+	'pokemon' | 'type' | 'tier' | 'move' | 'item' | 'ability' | 'egggroup' | 'category' | 'article'
 );
 
 export type SearchRow = (
@@ -55,7 +55,6 @@ export class DexSearch {
 		egggroup: 7,
 		category: 8,
 		article: 9,
-		color: 10,
 	};
 	static typeName = {
 		pokemon: 'Pok\u00e9mon',
@@ -67,7 +66,6 @@ export class DexSearch {
 		egggroup: 'Egg group',
 		category: 'Category',
 		article: 'Article',
-		color: 'Color',
 	};
 	firstPokemonColumn: 'Tier' | 'Number' = 'Number';
 
@@ -139,11 +137,10 @@ export class DexSearch {
 		let [type] = entry;
 		if (this.typedSearch.searchType === 'pokemon') {
 			if (type === this.sortCol) this.sortCol = null;
-			if (!['type', 'move', 'ability', 'egggroup', 'tier', 'color'].includes(type)) return false;
+			if (!['type', 'move', 'ability', 'egggroup', 'tier'].includes(type)) return false;
 			if (type === 'type') entry[1] = this.capitalizeFirst(entry[1]);
 			if (type === 'move') entry[1] = toID(entry[1]);
 			if (type === 'ability') entry[1] = this.dex.abilities.get(entry[1]).name;
-			if (type === 'color') entry [1] = this.capitalizeFirst(entry[1]);
 			if (type === 'tier') {
 				// very hardcode
 				const tierTable: { [id: string]: string } = {
