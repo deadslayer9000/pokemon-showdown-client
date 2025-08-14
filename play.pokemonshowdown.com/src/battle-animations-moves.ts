@@ -37786,7 +37786,7 @@ BattleMoveAnims['dragondrive'] = {anim: BattleMoveAnims['bide'].anim};
 BattleMoveAnims['shockingblow'] = {anim: BattleMoveAnims['spark'].anim};
 BattleMoveAnims['sandstormfury'] = {anim: BattleMoveAnims['sandsearstorm'].anim};
 BattleMoveAnims['wretchedstab'] = {anim: BattleMoveAnims['poisonjab'].anim};
-
+BattleMoveAnims['noxiouswave'] = {anim: BattleMoveAnims['sludgewave'].anim};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
