@@ -797,6 +797,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	magoodra: 1596 + 162,
 	electisaur: 1596 + 163,
 	eeveeon: 1596 + 164,
+	regisurge: 1596 + 165,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
