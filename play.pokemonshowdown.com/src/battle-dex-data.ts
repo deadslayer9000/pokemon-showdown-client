@@ -798,6 +798,11 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	electisaur: 1596 + 163,
 	eeveeon: 1596 + 164,
 	regisurge: 1596 + 165,
+	flygonultra: 1596 + 166,
+	ogerponshadowcrest: 1596 + 167,
+	risingphoenix: 1596 + 168,
+	diancieruby: 1596 + 169,
+	
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
