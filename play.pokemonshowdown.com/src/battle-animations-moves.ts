@@ -37349,6 +37349,94 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'accel', 'fade');
 		},
 	},
+	rebirth: {
+		anim(scene, [attacker, defender]) {
+						scene.showEffect('wisp', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.behind(-20),
+				scale: 0.2,
+				opacity: 1,
+				time: 0,
+			}, {
+				scale: 0.5,
+				time: 1200,
+			}, 'decel', 'fade');
+			scene.showEffect('wisp', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.behind(-20),
+				scale: 2,
+				opacity: 1,
+				time: 900,
+			}, {
+				time: 1200,
+			}, 'decel', 'fade');
+			scene.showEffect('wisp', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.behind(-20),
+				scale: 2,
+				opacity: 1,
+				time: 1300,
+			}, {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 2.5,
+				time: 1500,
+			}, 'linear', 'explode');
+
+			scene.showEffect('electroball', {
+				x: defender.x,
+				y: defender.y - 60,
+				z: defender.z,
+				scale: 0,
+				xscale: 0,
+				opacity: 0.5,
+				time: 1500,
+			}, {
+				scale: 2,
+				xscale: 12,
+				opacity: 0,
+				time: 2500,
+			}, 'accel');
+			scene.showEffect('wisp', {
+				x: defender.x,
+				y: defender.y + 350,
+				z: defender.z,
+				opacity: 1,
+				scale: 8,
+				xscale: 0,
+				yscale: 13,
+				time: 1500,
+			}, {
+				xscale: 4,
+				time: 2500,
+			}, 'accel', 'explode');
+			scene.showEffect('wisp', {
+				x: defender.x,
+				y: defender.y - 30,
+				z: defender.z,
+				opacity: 1,
+				scale: 2,
+				time: 1500,
+			}, {
+				scale: 6,
+				time: 2500,
+			}, 'decel', 'explode');
+			defender.delay(1500);
+			defender.anim({
+				z: defender.behind(10),
+				opacity: 0,
+				time: 200,
+			}, 'swing');
+			defender.delay(700);
+			defender.anim({
+				time: 300,
+			}, 'swing');
+		}
+	}
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
