@@ -37351,28 +37351,40 @@ export const BattleMoveAnims: AnimTable = {
 	},
 	rebirth: {
 		anim(scene, [attacker, defender]) {
-						scene.showEffect('wisp', {
+				scene.showEffect('mistball', {
+					x: attacker.x,
+					y: attacker.y,
+					z:attacker.behind(-20),
+					scale: 2,
+					opacity: 0.5,
+					time: 0,
+				}, {
+					scale: 0.2,
+					time: 200,
+				}, 'decel', 'fade');
+				scene.showEffect('mistball', {
 				x: attacker.x,
 				y: attacker.y,
 				z: attacker.behind(-20),
 				scale: 0.2,
 				opacity: 1,
-				time: 0,
+				time: 200,
 			}, {
-				scale: 0.5,
+				scale: 2,
 				time: 1200,
 			}, 'decel', 'fade');
-			scene.showEffect('wisp', {
+			scene.showEffect('shadowball', {
 				x: attacker.x,
 				y: attacker.y,
 				z: attacker.behind(-20),
-				scale: 2,
-				opacity: 1,
-				time: 900,
+				scale: 0.1,
+				opacity: 0.8,
+				time: 200,
 			}, {
+				scale: 1.5,
 				time: 1200,
 			}, 'decel', 'fade');
-			scene.showEffect('wisp', {
+			scene.showEffect('mistball', {
 				x: attacker.x,
 				y: attacker.y,
 				z: attacker.behind(-20),
@@ -37386,8 +37398,21 @@ export const BattleMoveAnims: AnimTable = {
 				scale: 2.5,
 				time: 1500,
 			}, 'linear', 'explode');
-
-			scene.showEffect('electroball', {
+			scene.showEffect('shadowball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.behind(-20),
+				scale: 1.8,
+				opacity: 1,
+				time: 1300,
+			}, {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 2.3,
+				time: 1500,
+			}, 'linear', 'explode');
+			scene.showEffect('mistball', {
 				x: defender.x,
 				y: defender.y - 60,
 				z: defender.z,
@@ -37414,17 +37439,147 @@ export const BattleMoveAnims: AnimTable = {
 				xscale: 4,
 				time: 2500,
 			}, 'accel', 'explode');
-			scene.showEffect('wisp', {
+			scene.showEffect('mistball', {
 				x: defender.x,
 				y: defender.y - 30,
 				z: defender.z,
-				opacity: 1,
+				opacity: 0.2,
 				scale: 2,
 				time: 1500,
 			}, {
 				scale: 6,
 				time: 2500,
 			}, 'decel', 'explode');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 1500,
+			}, {
+				x: defender.x - 100,
+				y: defender.y + 50,
+				z: defender.z,
+				time: 1600,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 1600,
+			}, {
+				x: defender.x + 100,
+				y: defender.y - 50,
+				z: defender.z,
+				time: 1700,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 1700,
+			}, {
+				x: defender.x - 100,
+				y: defender.y - 50,
+				z: defender.z,
+				time: 1800,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 1800,
+			}, {
+				x: defender.x - 100,
+				y: defender.y,
+				z: defender.z + 50,
+				time: 1900,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 1900,
+			}, {
+				x: defender.x + 100,
+				y: defender.y,
+				z: defender.z - 50,
+				time: 2000,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 2000,
+			}, {
+				x: defender.x + 100,
+				y: defender.y,
+				z: defender.z,
+				time: 2100,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 2100,
+			}, {
+				x: defender.x,
+				y: defender.y + 100,
+				z: defender.z - 50,
+				time: 2200,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 2200,
+			}, {
+				x: defender.x - 100,
+				y: defender.y,
+				z: defender.z + 50,
+				time: 2300,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 2300,
+			}, {
+				x: defender.x,
+				y: defender.y - 50,
+				z: defender.z - 50,
+				time: 2400,
+			}, 'decel', 'fade');
+			scene.showEffect('shine', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				opacity: 0.5,
+				scale: 0.5,
+				time: 2400,
+			}, {
+				x: defender.x -25,
+				y: defender.y - 50,
+				z: defender.z - 50,
+				time: 2500,
+			}, 'decel', 'fade');
 			defender.delay(1500);
 			defender.anim({
 				z: defender.behind(10),
