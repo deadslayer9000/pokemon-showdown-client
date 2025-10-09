@@ -802,7 +802,11 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	ogerponshadowcrest: 1596 + 167,
 	risingphoenix: 1596 + 168,
 	diancieruby: 1596 + 169,
-	
+	diancierubymega: 1596 + 170,
+	dunecargo: 1596 + 171,
+	uxiedelta: 1596 + 172,
+	dianciesapphire: 1596 + 173,
+	dianciesapphiremega: 1596 + 174,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
