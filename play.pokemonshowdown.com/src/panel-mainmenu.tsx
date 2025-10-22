@@ -47,6 +47,7 @@ export class MainMenuRoom extends PSRoom {
 	searchSent = false;
 	search: { searching: string[], games: Record<RoomID, string> | null } = { searching: [], games: null };
 	disallowSpectators: boolean | null = PS.prefs.disallowspectators;
+	lastChallenged: number | null = null;
 	constructor(options: RoomOptions) {
 		super(options);
 		if (this.backlog) {
@@ -65,6 +66,7 @@ export class MainMenuRoom extends PSRoom {
 		return '';
 	}
 	startSearch = (format: string, team?: Team) => {
+		PS.requestNotifications();
 		if (this.searchCountdown) {
 			PS.alert("Wait for this countdown to finish first...");
 			return;
@@ -86,7 +88,7 @@ export class MainMenuRoom extends PSRoom {
 		}
 		if (this.searchSent || this.search.searching?.length) {
 			this.searchSent = false;
-			PS.send('|/cancelsearch');
+			PS.send(`/cancelsearch`);
 			this.update(null);
 			return true;
 		}
@@ -106,8 +108,8 @@ export class MainMenuRoom extends PSRoom {
 	doSearch = (search: NonNullable<typeof this.searchCountdown>) => {
 		this.searchSent = true;
 		const privacy = this.adjustPrivacy();
-		PS.send(`|/utm ${search.packedTeam}`);
-		PS.send(`|${privacy}/search ${search.format}`);
+		PS.send(`/utm ${search.packedTeam}`);
+		PS.send(`${privacy}/search ${search.format}`);
 	};
 	override receiveLine(args: Args) {
 		const [cmd] = args;
@@ -339,7 +341,8 @@ export class MainMenuRoom extends PSRoom {
 			PS.addRoom({
 				id: roomid,
 				args: { pmTarget },
-			}, true);
+				autofocus: false,
+			});
 			room = PS.rooms[roomid] as ChatRoom;
 		} else {
 			room.updateTarget(pmTarget);
@@ -436,7 +439,7 @@ class NewsPanel extends PSRoomPanel {
 	change = (ev: Event) => {
 		const target = ev.currentTarget as HTMLInputElement;
 		if (target.value === '1') {
-			document.cookie = "preactalpha=1; expires=Thu, 1 Jun 2025 12:00:00 UTC; path=/";
+			document.cookie = "preactalpha=1; expires=Thu, 1 Oct 2025 12:00:00 UTC; path=/";
 		} else {
 			document.cookie = "preactalpha=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 		}
@@ -448,15 +451,15 @@ class NewsPanel extends PSRoomPanel {
 		const cookieSet = document.cookie.includes('preactalpha=1');
 		return <PSPanelWrapper room={this.props.room} fullSize scrollable>
 			<div class="construction">
-				This is the Preact client beta test.
+				This is the client rewrite beta test.
 				<form>
 					<label class="checkbox">
 						<input type="radio" name="preactalpha" value="1" onChange={this.change} checked={cookieSet} /> {}
-						Use Preact always
+						Use Rewrite always
 					</label>
 					<label class="checkbox">
 						<input type="radio" name="preactalpha" value="0" onChange={this.change} checked={!cookieSet} /> {}
-						Use Preact with URL
+						Use Rewrite with URL
 					</label>
 					<label class="checkbox">
 						<input type="radio" name="preactalpha" value="leave" onChange={this.change} /> {}
@@ -596,7 +599,10 @@ class MainMenuPanel extends PSRoomPanel<MainMenuRoom> {
 					</span>, " Disconnected"] : "Connecting..."}</em>
 				</button>
 				{PS.isOffline && <p class="buttonbar">
-					<button class="button" data-cmd="/reconnect"><i class="fa fa-plug" aria-hidden></i> <strong>Reconnect</strong></button>
+					<button class="button" data-cmd="/reconnect">
+						<i class="fa fa-plug" aria-hidden></i> <strong>Reconnect</strong>
+					</button> {}
+					{PS.connection?.reconnectTimer && <small>(Autoreconnect in {Math.round(PS.connection.reconnectDelay / 1000)}s)</small>}
 				</p>}
 			</TeamForm>;
 		}
@@ -653,6 +659,7 @@ class MainMenuPanel extends PSRoomPanel<MainMenuRoom> {
 						<p><a class={"mainmenu4 mainmenu" + onlineButton} href="battles">Watch a battle</a></p>
 						<p><a class={"mainmenu5 mainmenu" + onlineButton} href="users">Find a user</a></p>
 						<p><a class={"mainmenu6 mainmenu" + onlineButton} href="view-friends-all">Friends</a></p>
+						<p><a class={"mainmenu7 mainmenu" + onlineButton} href="resources">Info & Resources</a></p>
 					</div>
 				</div>
 				<div class="mainmenu-right" style={{ display: PS.leftPanelWidth ? 'none' : 'block' }}>
@@ -776,8 +783,15 @@ export class TeamForm extends preact.Component<{
 	submit = (ev: Event, validate?: 'validate') => {
 		ev.preventDefault();
 		const format = this.format;
-		const teamKey = this.base!.querySelector<HTMLButtonElement>('button[name=team]')!.value;
+		const teamElement = this.base!.querySelector<HTMLButtonElement>('button[name=team]');
+		const teamKey = teamElement!.value;
 		const team = teamKey ? PS.teams.byKey[teamKey] : undefined;
+		if (!window.BattleFormats[toID(format)]?.team && !team) {
+			PS.alert('You need to go into the Teambuilder and build a team for this format.', {
+				parentElem: teamElement!,
+			});
+			return;
+		}
 		PS.teams.loadTeam(team).then(() => {
 			(validate === 'validate' ? this.props.onValidate : this.props.onSubmit)?.(ev, format, team);
 		});

@@ -98,6 +98,6 @@ if (fs.existsSync('sprites/ani/')) {
 	try {
 		fs.unlinkSync('data/pokedex-mini.js');
 		fs.unlinkSync('data/pokedex-mini-bw.js');
-	} catch {}
+	} catch (e) {}
 	console.log('SKIPPED');
 }

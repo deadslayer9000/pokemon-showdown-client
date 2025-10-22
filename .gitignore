@@ -29,6 +29,7 @@ npm-debug.log
 /play.pokemonshowdown.com/js/client-main.js
 /play.pokemonshowdown.com/js/client-core.js
 /play.pokemonshowdown.com/js/client-connection.js
+/play.pokemonshowdown.com/js/client-connection-worker.js
 /play.pokemonshowdown.com/js/miniedit.js
 /play.pokemonshowdown.com/ads.txt
 
@@ -58,4 +59,5 @@ build-tools/build-indexes
 config/config-example.js
 play.pokemonshowdown.com/src/battle-dex.ts
 play.pokemonshowdown.com/testclient.html
+build-tools/build-indexes
 build-tools/build-indexes

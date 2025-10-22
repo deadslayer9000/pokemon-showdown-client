@@ -14,7 +14,7 @@ export class RoomsRoom extends PSRoom {
 	override readonly classType: string = 'rooms';
 	constructor(options: RoomOptions) {
 		super(options);
-		PS.send(`|/cmd rooms`);
+		PS.send(`/cmd rooms`);
 	}
 }
 
@@ -36,7 +36,7 @@ class RoomsPanel extends PSRoomPanel {
 	override componentDidMount() {
 		super.componentDidMount();
 		this.subscriptions.push(PS.user.subscribe(update => {
-			if (!update && PS.user.named) PS.send(`|/cmd rooms`);
+			if (!update && PS.user.named) PS.send(`/cmd rooms`);
 		}));
 	}
 	override componentDidUpdate() {
@@ -106,11 +106,15 @@ class RoomsPanel extends PSRoomPanel {
 
 		if (!searchid) {
 			const roomsCache = PS.mainmenu.roomsCache;
-			const officialRooms = [], chatRooms = [], hiddenRooms = [];
+			let spotLightLabel = '';
+			const officialRooms = [], chatRooms = [], hiddenRooms = [], spotLightRooms = [];
 			for (const room of roomsCache.chat || []) {
 				if (room.section !== this.section && this.section !== '') continue;
 				if (room.privacy === 'hidden') {
 					hiddenRooms.push(room);
+				} else if (room.spotlight) {
+					spotLightLabel = room.spotlight;
+					spotLightRooms.push(room);
 				} else if (room.section === 'Official') {
 					officialRooms.push(room);
 				} else {
@@ -119,6 +123,7 @@ class RoomsPanel extends PSRoomPanel {
 			}
 			return [
 				["Official chat rooms", officialRooms],
+				[spotLightLabel, spotLightRooms],
 				["Chat rooms", chatRooms],
 				["Hidden rooms", hiddenRooms],
 			];

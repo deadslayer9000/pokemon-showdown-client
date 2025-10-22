@@ -19,6 +19,7 @@ import {
 } from "./battle-choices";
 import type { Args } from "./battle-text-parser";
 import { ModifiableValue } from "./battle-tooltips";
+import { Net } from "./client-connection";
 
 type BattleDesc = {
 	id: RoomID,
@@ -33,6 +34,7 @@ export class BattlesRoom extends PSRoom {
 	override readonly classType = 'battles';
 	/** null means still loading */
 	format = '';
+	filters = '';
 	battles: BattleDesc[] | null = null;
 	constructor(options: RoomOptions) {
 		super(options);
@@ -50,7 +52,7 @@ export class BattlesRoom extends PSRoom {
 		this.refresh();
 	}
 	refresh() {
-		PS.send(`|/cmd roomlist ${toID(this.format)}`);
+		PS.send(`/cmd roomlist ${toID(this.format)}, ${this.filters}`);
 	}
 }
 
@@ -67,6 +69,13 @@ class BattlesPanel extends PSRoomPanel<BattlesRoom> {
 	changeFormat = (e: Event) => {
 		const value = (e.target as HTMLButtonElement).value;
 		this.props.room.setFormat(value);
+	};
+	applyFilters = (e: Event) => {
+		e.preventDefault();
+		const minElo = this.base?.querySelector<HTMLInputElement>(`select[name=elofilter]`)?.value;
+		const searchPrefix = this.base?.querySelector<HTMLInputElement>(`input[name=prefixsearch]`)?.value;
+		this.props.room.filters = `${minElo || ''},${searchPrefix || ''}`;
+		this.refresh();
 	};
 	renderBattleLink(battle: BattleDesc) {
 		const format = battle.id.split('-')[1];
@@ -97,25 +106,28 @@ class BattlesPanel extends PSRoomPanel<BattlesRoom> {
 				<p>
 					<label class="label">Format:</label><FormatDropdown onChange={this.changeFormat} placeholder="(All formats)" />
 				</p>
-				{/* <label>
-					Minimum Elo: <select name="elofilter">
+				<label>
+					Minimum Elo: <select name="elofilter" onChange={this.applyFilters}>
 						<option value="none">None</option><option value="1100">1100</option><option value="1300">1300</option>
 						<option value="1500">1500</option><option value="1700">1700</option><option value="1900">1900</option>
 					</select>
 				</label>
 
-				<form class="search">
+				<form class="search" onSubmit={this.applyFilters}>
 					<p>
-						<input type="text" name="prefixsearch" class="textbox" placeholder="Username prefix"/>
+						<input type="text" name="prefixsearch" class="textbox" placeholder="Username prefix" />
 						<button type="submit" class="button">Search</button>
 					</p>
-				</form> */}
+				</form>
 				<div class="list">{!room.battles ? (
 					<p>Loading...</p>
 				) : !room.battles.length ? (
 					<p>No battles are going on</p>
-				) : (
-					room.battles.map(battle => this.renderBattleLink(battle))
+				) : (<>
+					<p>{room.battles.length === 100 ?
+						`100+` : room.battles.length} {room.battles.length > 1 ? `battles` : `battle`}</p>
+					{room.battles.map(battle => this.renderBattleLink(battle))}
+				</>
 				)}</div>
 			</div>
 		</div></PSPanelWrapper>;
@@ -135,6 +147,24 @@ export class BattleRoom extends ChatRoom {
 	request: BattleRequest | null = null;
 	choices: BattleChoiceBuilder | null = null;
 	autoTimerActivated: boolean | null = null;
+
+	loadReplay() {
+		const replayid = this.id.slice(7);
+		Net(`https://replay.pokemonshowdown.com/${replayid}.json`).get().catch().then(data => {
+			try {
+				const replay = JSON.parse(data);
+				this.title = `[${replay.format}] ${replay.players.join(' vs. ')}`;
+				this.battle.stepQueue = replay.log.split('\n');
+				this.battle.atQueueEnd = false;
+				this.battle.pause();
+				this.battle.seekTurn(0);
+				this.connected = 'client-only';
+				this.update(null);
+			} catch {
+				this.receiveLine(['error', 'Battle not found']);
+			}
+		});
+	}
 }
 
 class BattleDiv extends preact.Component<{ room: BattleRoom }> {
@@ -214,6 +244,53 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 	static readonly id = 'battle';
 	static readonly routes = ['battle-*'];
 	static readonly Model = BattleRoom;
+	static handleDrop(ev: DragEvent) {
+		const file = ev.dataTransfer?.files?.[0];
+		if (file?.type === 'text/html') {
+			let roomNum = 1;
+			for (; roomNum < 100; roomNum++) {
+				if (!PS.rooms[`battle-uploaded-${roomNum}`]) break;
+			}
+			file.text().then(html => {
+				const titleStart = html.indexOf('<title>');
+				const titleEnd = html.indexOf('</title>');
+				let title = 'Uploaded Replay';
+				if (titleStart >= 0 && titleEnd > titleStart) {
+					title = html.slice(titleStart + 7, titleEnd - 1);
+					const colonIndex = title.indexOf(':');
+					const hyphenIndex = title.lastIndexOf('-');
+					if (hyphenIndex > colonIndex + 2) {
+						title = title.substring(colonIndex + 2, hyphenIndex - 1);
+					} else {
+						title = title.substring(colonIndex + 2);
+					}
+				}
+				const index1 = html.indexOf('<script type="text/plain" class="battle-log-data">');
+				const index2 = html.indexOf('<script type="text/plain" class="log">');
+				if (index1 < 0 && index2 < 0) {
+					PS.alert("Unrecognized HTML file: Only replay files are supported.");
+					return;
+				}
+				if (index1 >= 0) {
+					html = html.slice(index1 + 50);
+				} else if (index2 >= 0) {
+					html = html.slice(index2 + 38);
+				}
+				const index3 = html.indexOf('</script>');
+				html = html.slice(0, index3);
+				html = html.replace(/\\\//g, '/');
+
+				PS.join(`battle-uploaded-${roomNum}` as RoomID);
+				const room = PS.rooms[`battle-uploaded-${roomNum}`] as BattleRoom;
+				if (!room) return;
+
+				room.title = title;
+				room.connected = 'client-only';
+				PS.receive(`>battle-uploaded-${roomNum}\n${html}`);
+			});
+			return true;
+		}
+	}
 	/** last displayed team. will not show the most recent request until the last one is gone. */
 	team: ServerPokemon[] | null = null;
 	send = (text: string, elem?: HTMLElement) => {
@@ -347,7 +424,24 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 
 		room.request = request;
 		room.choices = new BattleChoiceBuilder(request);
+		this.notifyRequest();
 		room.update(null);
+	}
+	notifyRequest() {
+		const room = this.props.room;
+		let oName = room.battle.farSide.name;
+		if (oName) oName = " against " + oName;
+		switch (room.request?.requestType) {
+		case 'move':
+			room.notify({ title: "Your move!", body: "Move in your battle" + oName });
+			break;
+		case 'switch':
+			room.notify({ title: "Your switch!", body: "Switch in your battle" + oName });
+			break;
+		case 'team':
+			room.notify({ title: "Team preview!", body: "Choose your team order in your battle" + oName });
+			break;
+		}
 	}
 	renderControls() {
 		const room = this.props.room;
@@ -624,9 +718,11 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 	renderSwitchMenu(
 		request: BattleMoveRequest | BattleSwitchRequest, choices: BattleChoiceBuilder, ignoreTrapping?: boolean
 	) {
+		const battle = this.props.room.battle;
 		const numActive = choices.requestLength();
 		const maybeTrapped = !ignoreTrapping && choices.currentMoveRequest()?.maybeTrapped;
 		const trapped = !ignoreTrapping && !maybeTrapped && choices.currentMoveRequest()?.trapped;
+		const isReviving = battle.myPokemon!.some(p => p.reviving);
 
 		return <div class="switchmenu">
 			{maybeTrapped && <em class="movewarning">
@@ -635,8 +731,12 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 			{trapped && <em class="movewarning">
 				You're <strong>trapped</strong> and cannot switch!<br />
 			</em>}
+			{isReviving && <em class="movewarning">
+				Choose a pokemon to revive!<br />
+			</em>}
 			{request.side.pokemon.map((serverPokemon, i) => {
-				const cantSwitch = trapped || i < numActive || choices.alreadySwitchingIn.includes(i + 1) || serverPokemon.fainted;
+				let cantSwitch = trapped || i < numActive || choices.alreadySwitchingIn.includes(i + 1) || serverPokemon.fainted;
+				if (isReviving) cantSwitch = !serverPokemon.fainted;
 				return this.renderPokemonButton({
 					pokemon: serverPokemon,
 					cmd: `/switch ${i + 1}`,
@@ -724,7 +824,7 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 				if (choice.tera) buf.push(`Terastallize (`, <strong>{active?.canTerastallize || '???'}</strong>, `) and `);
 				if (choice.max && active?.canDynamax) buf.push(active?.gigantamax ? `Gigantamax and ` : `Dynamax and `);
 				buf.push(`use `, <strong>{choices.currentMove(choice, i)?.name}</strong>);
-				if (choice.targetLoc > 0) {
+				if (choice.targetLoc > 0 || battle.gameType === 'freeforall') {
 					const target = battle.farSide.active[choice.targetLoc - 1];
 					if (!target) {
 						buf.push(` at slot ${choice.targetLoc}`);
