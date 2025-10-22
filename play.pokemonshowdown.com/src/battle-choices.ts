@@ -486,8 +486,13 @@ export class BattleChoiceBuilder {
 				throw new Error(`That Pokémon is already in battle!`);
 			}
 			const target = request.side.pokemon[current.targetPokemon - 1];
+			const isReviving = this.request.side?.pokemon!.some(p => p.reviving);
 			if (!target) {
 				throw new Error(`Couldn't find Pokémon "${choice}" to switch to!`);
+			}
+			if (isReviving && target.fainted) return current;
+			if (isReviving && !target.fainted) {
+				throw new Error(`${target.name} still has energy to battle!`);
 			}
 			if (target.fainted) {
 				throw new Error(`${target.name} is fainted and cannot battle!`);
@@ -522,6 +527,7 @@ export class BattleChoiceBuilder {
 			(choice.mega ? ' mega' : '') +
 			(choice.megax ? ' megax' : '') +
 			(choice.megay ? ' megay' : '') +
+			(choice.ultra ? ' ultra' : '') +
 			(choice.z ? ' zmove' : '') +
 			(choice.tera ? ' terastallize' : '');
 	}

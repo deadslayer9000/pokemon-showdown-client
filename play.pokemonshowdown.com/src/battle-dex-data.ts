@@ -546,6 +546,9 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	inteleongmax: 1320 + 81,
 	urshifugmax: 1320 + 82,
 	urshifurapidstrikegmax: 1320 + 83,
+	// placeholder
+	floettemega: 1032 + 98,
+	zygardemega: 1032 + 139,
 
 	// CAP
 	syclant: 1512 + 0,
@@ -917,6 +920,8 @@ export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
 	necrozmaultra: 1404 + 103,
 	stakataka: 1404 + 104,
 	blacephalon: 1404 + 105,
+	// placeholder
+	zygardemega: 1404 + 83,
 };
 
 export const BattleAvatarNumbers: { [k: string]: string } = {
@@ -1707,6 +1712,7 @@ export class Species implements Effect {
 		this.spriteid = baseId + this.formeid;
 		if (this.spriteid.endsWith('totem')) this.spriteid = this.spriteid.slice(0, -5);
 		if (this.spriteid === 'greninja-bond') this.spriteid = 'greninja';
+		if (this.spriteid === 'rockruff-dusk') this.spriteid = 'rockruff';
 		if (this.spriteid.endsWith('-')) this.spriteid = this.spriteid.slice(0, -1);
 		this.baseForme = data.baseForme || '';
 
