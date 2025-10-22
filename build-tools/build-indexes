@@ -9,7 +9,7 @@ const rootDir = path.resolve(__dirname, '..');
 process.chdir(rootDir);
 
 if (!fs.existsSync('caches/pokemon-showdown')) {
-	child_process.execSync('git clone https://github.com/smogon/pokemon-showdown.git', {
+	child_process.execSync('git clone -b test --single-branch https://github.com/deadslayer9000/pokemon-showdown', {
 		cwd: 'caches',
 	});
 }
@@ -58,6 +58,8 @@ function requireNoCache(pathSpec) {
 	index = index.concat([
 		'ou', 'uu', 'ru', 'nu', 'pu', 'zu', 'lc', 'nfe', 'uber', 'uubl', 'rubl', 'nubl', 'publ', 'zubl', 'cap', 'caplc', 'capnfe',
 	].map(x => toID(x) + ' tier'));
+	index = index.concat ([ 
+		'red', 'blue', 'yellow', 'green', 'black', 'brown', 'purple', 'gray', 'white', 'pink'].map(x => toID(x) + ' color'));
 
 	const BattleArticleTitles = {};
 
