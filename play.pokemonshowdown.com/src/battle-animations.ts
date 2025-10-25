@@ -1880,7 +1880,7 @@ export class PokemonSprite extends Sprite {
 		mudsport: ['Mud Sport', 'good'],
 		substitute: null,
 		divination: null,
-		sacredbody: ['Blessed', 'good'],
+		sacredbody: ['Sacred Body', 'good'],
 		// sub graphics are handled elsewhere, see Battle.Sprite.animSub()
 		uproar: ['Uproar', 'neutral'],
 		rage: ['Rage', 'neutral'],
