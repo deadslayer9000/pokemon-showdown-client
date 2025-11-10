@@ -825,6 +825,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (!lsetSpecies.exists) return '' as ID;
 
 		if (lsetSpecies.id === 'gastrodoneast') return 'gastrodon' as ID;
+		if (lsetSpecies.id === 'gastrodondeltasouth') return 'gastrodondelta' as ID;
 		if (lsetSpecies.id === 'pumpkaboosuper') return 'pumpkaboo' as ID;
 		if (lsetSpecies.id === 'sinisteaantique') return 'sinistea' as ID;
 		if (lsetSpecies.id === 'tatsugiristretchy') return 'tatsugiri' as ID;
