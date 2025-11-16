@@ -1303,6 +1303,10 @@ export class BattleTooltips {
 				stats.spd = Math.floor(stats.spd * 0.75);
 			}
 		}
+		//Delta stuff
+		//if (ability === 'purranormal') {
+			
+		//}
 		// SSB
 		if (this.battle.tier.includes('Super Staff Bros')) {
 			if (pokemon.name === 'Felucia') {
@@ -2223,7 +2227,6 @@ export class BattleTooltips {
 				}
 			}
 		}
-
 		// Terrain
 		if ((this.battle.hasPseudoWeather('Electric Terrain') && moveType === 'Electric') ||
 			(this.battle.hasPseudoWeather('Grassy Terrain') && moveType === 'Grass') ||
