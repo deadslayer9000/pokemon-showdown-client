@@ -2833,6 +2833,9 @@ export class Battle {
 					poke.removeVolatile('chronocatalystspa' as ID);
 					poke.removeVolatile('chronocatalystspd' as ID);
 					poke.removeVolatile('chronocatalystspe' as ID);
+				case 'aquaring':
+					this.scene.resultAnim(poke, 'Aqua Ring ended', 'neutral' );
+					break;
 				default:
 					if (effect.effectType === 'Move') {
 						if (effect.name === 'Doom Desire') {
