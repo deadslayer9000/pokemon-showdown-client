@@ -38645,6 +38645,12 @@ BattleMoveAnims['shockingblow'] = {anim: BattleMoveAnims['spark'].anim};
 BattleMoveAnims['sandstormfury'] = {anim: BattleMoveAnims['sandsearstorm'].anim};
 BattleMoveAnims['wretchedstab'] = {anim: BattleMoveAnims['poisonjab'].anim};
 BattleMoveAnims['noxiouswave'] = {anim: BattleMoveAnims['sludgewave'].anim};
+BattleMoveAnims['disintegrate'] = {
+	anim(scene, [attacker, defender]) {
+		BattleMoveAnims['hyperbeam'].anim(scene, [attacker, defender]);
+		BattleMoveAnims['overheat'].anim(scene, [attacker, defender]);
+	},
+};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
