@@ -1879,6 +1879,8 @@ export class PokemonSprite extends Sprite {
 		watersport: ['Water Sport', 'good'],
 		mudsport: ['Mud Sport', 'good'],
 		substitute: null,
+		divination: null,
+		//sacredbody: ['Sacred Body', 'good'],
 		// sub graphics are handled elsewhere, see Battle.Sprite.animSub()
 		uproar: ['Uproar', 'neutral'],
 		rage: ['Rage', 'neutral'],
