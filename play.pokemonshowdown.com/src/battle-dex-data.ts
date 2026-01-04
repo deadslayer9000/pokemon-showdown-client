@@ -810,6 +810,11 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	uxiedelta: 1596 + 172,
 	dianciesapphire: 1596 + 173,
 	dianciesapphiremega: 1596 + 174,
+	necromausermega: 1596 + 175,
+	slaughtermausmega: 1596 + 176,
+	serperiorultra: 1596 + 177,
+	glacierus: 1596 + 178,
+	glacierustherian: 1596 + 179,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
