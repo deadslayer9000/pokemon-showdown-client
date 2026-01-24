@@ -1195,9 +1195,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			});
 		}
 		//delta formats
-		if (format === 'dplru' && table.thirtyfivePokes) {
+		if (format === 'dplru' && table.dplru) {
 			tierSet = tierSet.filter(([type, id]) => {
-				if (id in table.thirtyfivePokes) return true;
+				if (id in table.dlpru) return true;
 				return false;
 			});	
 		}
