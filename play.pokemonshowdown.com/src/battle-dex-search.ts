@@ -1197,7 +1197,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		//delta formats
 		if (format === 'dplru' && table.dplru) {
 			tierSet = tierSet.filter(([type, id]) => {
-				if (id in table.dlpru) return true;
+				if (id in table.dplru) return true;
 				return false;
 			});	
 		}
