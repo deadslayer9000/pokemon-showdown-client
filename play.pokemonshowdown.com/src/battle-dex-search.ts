@@ -1194,7 +1194,13 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 				return true;
 			});
 		}
-
+		//delta formats
+		if (format === 'dplru' && table.dplru) {
+			tierSet = tierSet.filter(([type, id]) => {
+				if (id in table.dplru) return true;
+				return false;
+			});	
+		}
 		// Filter out Gmax Pokemon from standard tier selection
 		if (!(/^(battlestadium|vgc|doublesubers)/g.test(format) || (format === 'doubles' && this.formatType === 'natdex'))) {
 			tierSet = tierSet.filter(([type, id]) => {
