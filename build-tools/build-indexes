@@ -446,7 +446,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (nd35Pokes.exists && !Dex.formats.getRuleTable(nd35Pokes).isBannedSpecies(species)) {
 					thirtyfivePokes[species.id] = 1;
 				}
-				const dplruallowed = Dex.formats.get(gen + 'ou');
+				const dplruallowed = Dex.formats.get(gen + 'ndplru');
 				if (dplruallowed.exists && !Dex.formats.getRuleTable(dplruallowed).isBannedSpecies(species)) {
 					dplru[species.id] = 1;
 				}
