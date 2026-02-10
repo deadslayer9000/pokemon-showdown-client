@@ -3114,7 +3114,7 @@ export class Battle {
 			let poke = this.getPokemon(kwArgs.of);
 			let fromeffect = Dex.getEffect(kwArgs.from);
 			this.activateAbility(poke, fromeffect);
-			let minTimeLeft = 4; //dumb ass hardcode for planar collapse
+			let minTimeLeft = 5;
 			let maxTimeLeft = 0;
 			if (effect.id.endsWith('terrain')) {
 				for (let i = this.pseudoWeather.length - 1; i >= 0; i--) {
@@ -3127,6 +3127,7 @@ export class Battle {
 				if (this.gen > 6) maxTimeLeft = 8;
 			}
 			if (kwArgs.persistent) minTimeLeft += 2;
+			if (kwArgs.planarcollapse) minTimeLeft - 1;
 			this.addPseudoWeather(effect.name, minTimeLeft, maxTimeLeft);
 
 			switch (effect.id) {
