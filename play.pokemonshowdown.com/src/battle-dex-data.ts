@@ -815,6 +815,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	serperiorultra: 1596 + 177,
 	glacierus: 1596 + 178,
 	glacierustherian: 1596 + 179,
+	draculedge: 1596 + 180,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
