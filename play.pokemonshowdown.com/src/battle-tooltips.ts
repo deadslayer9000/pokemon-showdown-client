@@ -1669,6 +1669,12 @@ export class BattleTooltips {
 			case 'Ogerpon-Cornerstone': case 'Ogerpon-Cornerstone-Tera':
 				moveType = 'Rock';
 				break;
+			case 'Ogerpon-Stormpeak': case "Ogerpon-Stormpeak-Tera":
+				moveType = "Electric";
+				break;
+			case 'Ogerpon-Shadowcrest': case "Ogerpon-Shadowcrest-Tera":
+				moveType = "Ghost";
+				break;
 			}
 		}
 
