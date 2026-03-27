@@ -38253,7 +38253,7 @@ putridgrasp: {
 				time: 1000,
 				opacity: 0,
 			}, 'ballistic2Under');
-			BattleOtherAnims.punchattack.anim(scene, [attacker, defender]);
+			BattleOtherAnims.clawattack.anim(scene, [attacker, defender]);
 		},
 	},
 };
