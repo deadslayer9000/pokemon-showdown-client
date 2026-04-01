@@ -38208,7 +38208,54 @@ export const BattleMoveAnims: AnimTable = {
 				time: 300,
 			}, 'swing');
 		}
-	}
+	},
+putridgrasp: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('poisonwisp', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 1,
+				time: 600,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 900,
+				opacity: 0,
+			}, 'ballistic2');
+			scene.showEffect('poisonwisp', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 1,
+				time: 650,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 950,
+				opacity: 0,
+			}, 'linear');
+			scene.showEffect('poisonwisp', {
+				x: defender.x,
+				y: defender.y,
+				z: defender.z,
+				scale: 0.6,
+				opacity: 1,
+				time: 700,
+			}, {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				time: 1000,
+				opacity: 0,
+			}, 'ballistic2Under');
+			BattleOtherAnims.clawattack.anim(scene, [attacker, defender]);
+		},
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
@@ -38651,6 +38698,9 @@ BattleMoveAnims['disintegrate'] = {
 		BattleMoveAnims['overheat'].anim(scene, [attacker, defender]);
 	},
 };
+BattleMoveAnims['ampserum'] = {anim: BattleMoveAnims['spark'].anim};
+BattleMoveAnims['chillingsilence'] = {anim: BattleMoveAnims['sing'].anim};
+BattleMoveAnims['decisivebolt'] = {anim: BattleMoveAnims['thunderbolt'].anim};
 //BattleMoveAnims[''] = {anim: BattleMoveAnims[''].anim};
 
 
