@@ -488,7 +488,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				}
 				const dplruallowed = Dex.formats.get(gen + 'nddplru');
 				if (dplruallowed.exists && !Dex.formats.getRuleTable(dplruallowed).isBannedSpecies(species)) {
-					dplru[species.id] = 1;
+					if (!metagameBans['nddplru']) metagameBans['nddplru'] = {};
+					metagameBans['nddplru'][species.id] = 1;
 				}
 			}
 			if (genNum >= 8) {

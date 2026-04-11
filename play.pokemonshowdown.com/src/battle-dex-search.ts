@@ -1250,9 +1250,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			});
 		}
 		//delta formats
-		if (format === 'dplru' && table.dplru) {
+		if (format === 'dplru' && table.metagameBans?.dplru) {
 			tierSet = tierSet.filter(([type, id]) => {
-				if (id in table.dplru) return true;
+				if (id in table.metagameBans.dplru) return true;
 				return false;
 			});	
 		}
