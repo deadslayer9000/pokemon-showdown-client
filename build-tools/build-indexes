@@ -1076,16 +1076,48 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['champions'].learnsets[id][moveid] = '9a';
 		}
 	}
+	//not my solution thank you to casper123 on the showdown help disc if this works fuck you if it doesnt
 	const DDLS3Learnsets = Dex.mod('ddls3patch').data.Learnsets;
-	for (const id in DDLS3Learnsets) {
-		const species = Dex.mod('ddls3patch').species.get(id);
-		if (species.isNonstandard) continue;
-		const learnset = DDLS3Learnsets[id].learnset;
-		BattleTeambuilderTable['ddls3patch'].learnsets[id] = {};
-		for (const moveid in learnset) {
-			BattleTeambuilderTable['ddls3patch'].learnsets[id][moveid] = '9a';
+	const G9BaseLearnsets = BattleTeambuilderTable.learnsets;
+	for (const tableId of ['ddls3patch']) {
+		for (const id in G9BaseLearnsets) {
+			const species = Dex.mod('ddls3patch').species.get(id);
+			if (species.isNonstandard && ['Unobtainable', 'CAP'].includes(species.isNonstandard)) continue;
+			
+			BattleTeambuilderTable[tableId].learnsets[id] = {};
+
+			// Deep copy move learnset data (whatever casper said)
+			for (const moveid in G9BaseLearnsets[id]) {
+				BattleTeambuilderTable[tableId].learnsets[id][moveid] = G9BaseLearnsets[id][moveid];
+			}
+
+			//Add/override with custom mod's learnset additions
+			if (DDLS3Learnsets[id]?.learnset) {
+				const customLearnset = DDLS3Learnsets[id].learnset;
+				for (const moveid in customLearnset) {
+					const gens = customLearnset[moveid].map(x => Number(x[0]));
+					const minGen = Math.min(...gens);
+
+					BattleTeambuilderTable[tableId].learnsets[id][moveid] = '0123456789'.slice(minGen);
+
+					if (gens.indexOf(6) >= 0) BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'p';
+					if (gens.indexOf(7) >= 0 && customLearnset[moveid].some(x => x[0] === '7' && x !== '7V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'q';
+					}
+					if (gens.indexOf(8) >= 0 && customLearnset[moveid].some(x => x[0] === '8' && x !== '8V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'g';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x[0] === '9' && x !== '9V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'a';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x === '9E')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'e';
+					}
+				}
+			}
 		}
 	}
+
 	const SSDLC1Learnsets = Dex.mod('gen8dlc1').data.Learnsets;
 	for (const id in SSDLC1Learnsets) {
 		const learnset = SSDLC1Learnsets[id].learnset;
