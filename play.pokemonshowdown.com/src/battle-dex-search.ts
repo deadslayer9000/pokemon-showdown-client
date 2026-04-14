@@ -1045,7 +1045,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`gen${dex.gen}`];
 		} else if (this.formatType === 'champions') {
 			table = table[`champions`];
-		} else if (isVGCOrBS && !this.formatType) {
+		}else if (this.formatType === 'ddls3') {
+			table = table['ddls3patch'];
+		}
+		else if (isVGCOrBS && !this.formatType) {
 			table = table[`gen${dex.gen}vgc`];
 		} else if (dex.gen === 9 && isHackmons && !this.formatType) {
 			table = table['bh'];
