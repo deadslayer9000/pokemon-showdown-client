@@ -582,7 +582,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'frlg' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' |
 		'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | 'ddls3' | null = null;
 	isDoubles = false;
 
 	/**
@@ -726,6 +726,11 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			format = format.slice(9) as ID;
 			if (!format) format = 'ou' as ID;
 		}
+		//ddl
+		if (format.includes('ddls3')) {
+			this.formatType = 'ddls3';
+			this.dex = Dex.mod('ddls3patch' as ID);
+		}
 		this.format = format;
 
 		this.species = '' as ID;
@@ -820,6 +825,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType?.startsWith('bdsp')) table = table['gen8bdsp'];
 		if (this.formatType === 'letsgo') table = table['gen7letsgo'];
 		if (this.formatType === 'bw1') table = table['gen5bw1'];
+		if (this.formatType === 'ddls3') table = table['ddls3patch'];
 		if (this.formatType === 'rs') table = table['gen3rs'];
 		if (this.formatType === 'frlg') table = table['gen3frlg'];
 		if (this.formatType === 'legendsza') table = table['gen9legendsou'];
@@ -894,6 +900,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType?.startsWith('bdsp')) table = table['gen8bdsp'];
 			if (this.formatType === 'letsgo') table = table['gen7letsgo'];
 			if (this.formatType === 'bw1') table = table['gen5bw1'];
+			if (this.formatType === 'ddls3') table = table['ddls3patch'];
 			if (this.formatType === 'rs') table = table['gen3rs'];
 			if (this.formatType === 'frlg') table = table['gen3frlg'];
 			if (this.formatType === 'legendsza') table = table['gen9legendsou'];
@@ -921,6 +928,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'bdsp' ? 'gen8bdsp' :
 			this.formatType === 'bdspdoubles' ? 'gen8bdspdoubles' :
 			this.formatType === 'bw1' ? 'gen5bw1' :
+			this.formatType === 'ddls3' ? 'ddls3patch' :
 			this.formatType === 'rs' ? 'gen3rs' :
 			this.formatType === 'frlg' ? 'gen3frlg' :
 			this.formatType === 'nfe' ? `gen${gen}nfe` :
@@ -1821,6 +1829,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		if (this.formatType?.startsWith('bdsp')) lsetTable = lsetTable['gen8bdsp'];
 		if (this.formatType === 'letsgo') lsetTable = lsetTable['gen7letsgo'];
 		if (this.formatType === 'bw1') lsetTable = lsetTable['gen5bw1'];
+		if (this.formatType === 'ddls3') lsetTable = lsetTable['ddls3patch'];
 		if (this.formatType === 'rs') lsetTable = lsetTable['gen3rs'];
 		if (this.formatType === 'frlg') lsetTable = lsetTable['gen3frlg'];
 		if (this.formatType === 'legendsza') lsetTable = lsetTable['gen9legendsou'];
