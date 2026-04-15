@@ -601,6 +601,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		} else if (isDDLS3) {
 			BattleTeambuilderTable['ddls3patch'] = {};
 			BattleTeambuilderTable['ddls3patch'].learnsets = {};
+			BattleTeambuilderTable['ddls3patch'].tiers = tiers;
+			BattleTeambuilderTable['ddls3patch'].items = items;
+			BattleTeambuilderTable['ddls3patch'].overrideTier = overrideTier;
+			BattleTeambuilderTable['ddls3patch'].formatSlices = formatSlices;
 		} else if (isBW1 || isRS || isFRLG) {
 			BattleTeambuilderTable[gen] = {};
 			BattleTeambuilderTable[gen].overrideTier = overrideTier;
