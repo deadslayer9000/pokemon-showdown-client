@@ -727,7 +727,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (!format) format = 'ou' as ID;
 		}
 		//ddl
-		if (format.includes('ddls3')) {
+		if (format.includes('ddls3') || format.includes('deltadraftleagueseason3')) {
 			this.formatType = 'ddls3';
 			this.dex = Dex.mod('ddls3patch' as ID);
 		}
