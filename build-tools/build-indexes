@@ -282,7 +282,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isPreDLC = (genIdent === 9.4 || genIdent === 9.41 || genIdent === -9.4);
 		const isSVDLC1 = (genIdent === 9.401 || genIdent === 9.411 || genIdent === -9.401);
 		const isLegendsZA = genIdent === 9.33;
-		const isNatDex = ('' + genIdent).endsWith('.1') || genIdent === 9.443 && genIdent > 8;
+		const isNatDex = ('' + genIdent).endsWith('.1') && genIdent > 8;
 		const isStadium = ('' + genIdent).endsWith('.04');
 		const isDoubles = (genIdent < 0);
 		const isVGC = ('' + genIdent).endsWith('.5');
