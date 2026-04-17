@@ -286,7 +286,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	mukalola: 1032 + 134,
 	exeggutoralola: 1032 + 135,
 	marowakalola: 1032 + 136,
-	greninjaash: 1032 + 137,
+	//greninjaash: 1032 + 137,
 	zygarde10: 1032 + 138,
 	zygardecomplete: 1032 + 139,
 	oricoriopompom: 1032 + 140,
@@ -438,7 +438,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	silvallywater: 1032 + 283,
 
 	// alt forms with duplicate icons
-	greninjabond: 658,
+	//greninjabond: 658,
 	gumshoostotem: 735,
 	raticatealolatotem: 1032 + 120,
 	marowakalolatotem: 1032 + 136,
