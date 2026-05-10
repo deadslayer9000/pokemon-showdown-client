@@ -1752,6 +1752,10 @@ export class BattleTooltips {
 					if (value.abilityModify(0, 'Galvanize')) moveType = 'Electric';
 					if (value.abilityModify(0, 'Pixilate')) moveType = 'Fairy';
 					if (value.abilityModify(0, 'Refrigerate')) moveType = 'Ice';
+					if (value.abilityModify(0, 'Fatalize')) moveType = "Dark";
+				}
+				if (moveType === 'Grass') {
+					if (value.abilityModify(0, 'Spoiled Goods')) moveType = 'Poison';
 				}
 				if (value.abilityModify(0, 'Normalize')) moveType = 'Normal';
 			}
@@ -2434,6 +2438,12 @@ export class BattleTooltips {
 		}
 		if (move.flags['sound']) {
 			value.abilityModify(1.3, "Punk Rock");
+			if (this.battle.weather === "sandstorm") {
+				value.abilityModify(1.3, "Desert Spirit");
+			}
+		}
+		if (move.flags['kick']) {
+			value.abilityModify(1.3, "Torque Step");
 		}
 		if (move.flags['slicing']) {
 			value.abilityModify(1.5, "Sharpness");
@@ -2462,8 +2472,12 @@ export class BattleTooltips {
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Aerilate");
 				value.abilityModify(1.2, "Dragonize");
 				value.abilityModify(1.2, "Galvanize");
+				value.abilityModify(1.2, "Fatalize");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Pixilate");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Refrigerate");
+			}
+			if (move.type === 'Grass') {
+				value.abilityModify(1.2, "Spoiled Goods");
 			}
 			if (this.battle.gen > 6) {
 				value.abilityModify(1.2, "Normalize");
