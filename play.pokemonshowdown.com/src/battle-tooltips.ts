@@ -2438,9 +2438,7 @@ export class BattleTooltips {
 		}
 		if (move.flags['sound']) {
 			value.abilityModify(1.3, "Punk Rock");
-			if (this.battle.weather === "sandstorm") {
-				value.abilityModify(1.3, "Desert Spirit");
-			}
+			value.abilityModify(1.3, "Desert Spirit");
 		}
 		if (move.flags['kick']) {
 			value.abilityModify(1.3, "Torque Step");
