@@ -1883,6 +1883,7 @@ export class PokemonSprite extends Sprite {
 		sacredbody: ['Sacred Body', 'good'],
 		astralburst: ['Astral Binds', 'bad'],
 		necrosis: ['Necrosis', 'bad'],
+		viremic: ["Viremic", 'bad'],
 		// sub graphics are handled elsewhere, see Battle.Sprite.animSub()
 		uproar: ['Uproar', 'neutral'],
 		rage: ['Rage', 'neutral'],
