@@ -1791,7 +1791,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		if (move.flags['charge']) {
 			return itemid === 'powerherb';
 		}
-		if (move.flags['recharge']) {
+		if (move.flags['recharge'] && move.id !== 'titanbuster') {
 			return false;
 		}
 		if (move.flags['slicing'] && abilityid === 'sharpness') {
@@ -1829,7 +1829,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		let sketch = false;
 		let gen = `${dex.gen}`;
 		let lsetTable = BattleTeambuilderTable;
-		if (this.formatType?.startsWith('bdsp')) lsetTable = lsetTable['gen8bdsp'];
+	if (this.formatType?.startsWith('bdsp')) lsetTable = lsetTable['gen8bdsp'];
 		if (this.formatType === 'letsgo') lsetTable = lsetTable['gen7letsgo'];
 		if (this.formatType === 'bw1') lsetTable = lsetTable['gen5bw1'];
 		if (this.formatType === 'ddls3') lsetTable = lsetTable['ddls3patch'];
@@ -1864,7 +1864,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 					}
 					if (this.formatType !== 'natdex' && this.formatType !== 'legendsza' && move.isNonstandard === "Past") {
 						continue;
-					}
+						}
 					if (
 						this.formatType?.startsWith('dlc1') &&
 						BattleTeambuilderTable['gen8dlc1']?.nonstandardMoves.includes(moveid)
