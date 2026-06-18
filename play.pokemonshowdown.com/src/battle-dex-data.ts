@@ -867,6 +867,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	glacierus: 1644 + 178,
 	glacierustherian: 1644 + 179,
 	draculedge: 1644 + 180,
+	mewatom: 1644 + 181,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
