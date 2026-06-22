@@ -868,6 +868,11 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	glacierustherian: 1644 + 179,
 	draculedge: 1644 + 180,
 	mewatom: 1644 + 181,
+	trapinchultra: 1644 + 182,
+	tentacooldelta: 1644 + 183,
+	froakiedelta: 1644 + 184, 
+	froakieomega: 1644 + 185,
+	cyndaquildelta: 1644 + 186,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
