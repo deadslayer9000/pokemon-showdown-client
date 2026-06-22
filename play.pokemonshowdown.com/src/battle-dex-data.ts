@@ -873,6 +873,18 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	froakiedelta: 1644 + 184, 
 	froakieomega: 1644 + 185,
 	cyndaquildelta: 1644 + 186,
+	lumrunt: 1644 + 187,
+	broomish: 1644 + 188,
+	magearnadelta: 1644 + 189,
+	zeraoradelta: 1644 + 190,
+	sevygarde: 1644 + 191,
+	dreepyultra: 1644 + 192,
+	slowpokedelta: 1644 + 193,
+	applinultra: 1644 + 194,
+	sandygastdelta: 1644 + 195,
+	axewdelta: 1644 + 196,
+	gibledelta: 1644 + 197,
+	aipomultra: 1644 + 198,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
