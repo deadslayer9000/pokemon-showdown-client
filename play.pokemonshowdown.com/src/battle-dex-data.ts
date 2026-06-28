@@ -885,6 +885,23 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	axewdelta: 1644 + 196,
 	gibledelta: 1644 + 197,
 	aipomultra: 1644 + 198,
+	joltikdelta: 1644 + 199,
+	chatotdelta: 1644 + 200,
+	chatotdeltaf: 1644 + 201,
+	raltsatom: 1644 + 202,
+	rattatadelta: 1644 + 203,
+	glimmetdelta: 1644 + 204,
+	glimmetultra: 1644 + 205,
+	hoothootdelta: 1644 + 206,
+	munchlaxdelta: 1644 + 207,
+	shinxdelta: 1644 + 208,
+	charmanderdelta: 1644 + 209,
+	druddigondelta: 1644 + 210,
+	sprigatitodelta: 1644 + 211,
+	solosisultra: 1644 + 212,
+	ironsentinel: 1644 + 213,
+
+
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
