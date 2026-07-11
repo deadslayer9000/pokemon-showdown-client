@@ -900,6 +900,14 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	sprigatitodelta: 1644 + 211,
 	solosisultra: 1644 + 212,
 	ironsentinel: 1644 + 213,
+	stridingsun: 1644 + 214,
+	budewdelta: 1644 + 215,
+	wooperdelta: 1644 + 216,
+	larvestadelta: 1644 + 217,
+	starid: 1644 + 218,
+	aipomdelta: 1644 + 219,
+	growlithedelta: 1644 + 220,
+	
 
 
 };
