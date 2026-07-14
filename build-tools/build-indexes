@@ -1148,8 +1148,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 
 			//Add/override with custom mod's learnset additions
-			if (GhostingTourLearnsets[id]?.learnset) {
-				const customLearnset = GhostingTourLearnsets[id].learnset;
+			if (GhostingLearnsets[id]?.learnset) {
+				const customLearnset = GhostingLearnsets[id].learnset;
 				for (const moveid in customLearnset) {
 					const gens = customLearnset[moveid].map(x => Number(x[0]));
 					const minGen = Math.min(...gens);
