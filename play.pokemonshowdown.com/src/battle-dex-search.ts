@@ -582,7 +582,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'frlg' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' |
 		'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | 'ddls3' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | 'ddls3' | 'ghosttour' | null = null;
 	isDoubles = false;
 
 	/**
@@ -731,6 +731,10 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'ddls3';
 			this.dex = Dex.mod('ddls3patch' as ID);
 		}
+		if (format.includes('ghostingpatch') || format.includes('ghostingtournament')) {
+			this.formatType = 'ghosttour';
+			this.dex = Dex.mod('ghostingpatch' as ID);
+		}
 		this.format = format;
 
 		this.species = '' as ID;
@@ -826,6 +830,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'letsgo') table = table['gen7letsgo'];
 		if (this.formatType === 'bw1') table = table['gen5bw1'];
 		if (this.formatType === 'ddls3') table = table['ddls3patch'];
+		if (this.formatType === 'ghosttour') table = table['ghostingpatch'];
 		if (this.formatType === 'rs') table = table['gen3rs'];
 		if (this.formatType === 'frlg') table = table['gen3frlg'];
 		if (this.formatType === 'legendsza') table = table['gen9legendsou'];
@@ -901,6 +906,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType === 'letsgo') table = table['gen7letsgo'];
 			if (this.formatType === 'bw1') table = table['gen5bw1'];
 			if (this.formatType === 'ddls3') table = table['ddls3patch'];
+			if (this.formatType === 'ghosttour') table = table['ghostingpatch'];
 			if (this.formatType === 'rs') table = table['gen3rs'];
 			if (this.formatType === 'frlg') table = table['gen3frlg'];
 			if (this.formatType === 'legendsza') table = table['gen9legendsou'];
@@ -929,6 +935,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'bdspdoubles' ? 'gen8bdspdoubles' :
 			this.formatType === 'bw1' ? 'gen5bw1' :
 			this.formatType === 'ddls3' ? 'ddls3patch' :
+			this.formatType === 'ghosttour' ? 'ghostingpatch' :
 			this.formatType === 'rs' ? 'gen3rs' :
 			this.formatType === 'frlg' ? 'gen3frlg' :
 			this.formatType === 'nfe' ? `gen${gen}nfe` :
@@ -1047,6 +1054,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`champions`];
 		}else if (this.formatType === 'ddls3') {
 			table = table['ddls3patch'];
+		} else if (this.formatType === 'ghosttour') {
+			table = table['ghostingpatch'];
 		}
 		else if (isVGCOrBS && !this.formatType) {
 			table = table[`gen${dex.gen}vgc`];
@@ -1821,7 +1830,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		const isTradebacks = format.includes('tradebacks');
 		const regionBornLegality = dex.gen >= 6 &&
 			(/^battle(spot|stadium|festival)/.test(format) || format.startsWith('bss') ||
-				format.startsWith('vgc') || (dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza' && this.formatType !== 'ddls3'));
+				format.startsWith('vgc') || (dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza' && this.formatType !== 'ddls3' && this.formatType !== 'ghosttour'));
 
 		let learnsetid = this.firstLearnsetid(species.id);
 		let moves: string[] = [];
@@ -1833,6 +1842,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		if (this.formatType === 'letsgo') lsetTable = lsetTable['gen7letsgo'];
 		if (this.formatType === 'bw1') lsetTable = lsetTable['gen5bw1'];
 		if (this.formatType === 'ddls3') lsetTable = lsetTable['ddls3patch'];
+		if (this.formatType === 'ghosttour') lsetTable = lsetTable['ghostingpatch'];
 		if (this.formatType === 'rs') lsetTable = lsetTable['gen3rs'];
 		if (this.formatType === 'frlg') lsetTable = lsetTable['gen3frlg'];
 		if (this.formatType === 'legendsza') lsetTable = lsetTable['gen9legendsou'];
