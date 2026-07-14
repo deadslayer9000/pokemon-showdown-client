@@ -1133,7 +1133,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 
-	const GhostingTourLearnsets = Dex.mod('ghostingpatch').data.Learnsets;
+	/*const GhostingTourLearnsets = Dex.mod('ghostingpatch').data.Learnsets;
 	for (const tableId of ['ghostingpatch']) {
 		for (const id in G9BaseLearnsets) {
 			const species = Dex.mod('ghostingpatch').species.get(id);
@@ -1172,7 +1172,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				}
 			}
 		}
-	}
+	}*/
 
 	const SSDLC1Learnsets = Dex.mod('gen8dlc1').data.Learnsets;
 	for (const id in SSDLC1Learnsets) {
