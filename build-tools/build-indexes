@@ -310,7 +310,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isFRLG) genStr += 'frlg';
 			if (isChampions) genStr = 'champions';
 			if (isDDLS3) genStr = 'ddls3patch';
-			if (isGhosting) genStr = 'ghostingpatch'
+			if (isGhosting) genStr = 'ghostingpatch';
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
