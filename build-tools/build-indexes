@@ -1134,7 +1134,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	}
 
 	const GhostingTourLearnsets = Dex.mod('ghostingpatch').data.Learnsets;
-	const G9BaseLearnsets = BattleTeambuilderTable.learnsets;
 	for (const tableId of ['ghostingpatch']) {
 		for (const id in G9BaseLearnsets) {
 			const species = Dex.mod('ghostingpatch').species.get(id);
