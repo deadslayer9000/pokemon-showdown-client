@@ -289,6 +289,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isGen9BH = genIdent === 9.9;
 		const isSSB = genIdent === 9.6;
 		const isChampions = genIdent === 9.67;
+		const isGhostTour = genIdent === 9.555;
 		const isDDLS3 = genIdent === 9.443;
 		const genNum = Math.floor(isDoubles ? -genIdent : genIdent);
 		const isBW1 = genIdent === 5.1;
@@ -309,6 +310,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isFRLG) genStr += 'frlg';
 			if (isChampions) genStr = 'champions';
 			if (isDDLS3) genStr = 'ddls3patch';
+			if (isGhostTour) genStr = 'ghostingpatch'
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -418,7 +420,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
-				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411) || isDDLS3) {
+				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411) || isDDLS3 || isGhostTour) {
 					return species.natDexTier;
 				}
 				return species.tier;
@@ -605,7 +607,15 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['ddls3patch'].items = items;
 			BattleTeambuilderTable['ddls3patch'].overrideTier = overrideTier;
 			BattleTeambuilderTable['ddls3patch'].formatSlices = formatSlices;
-		} else if (isBW1 || isRS || isFRLG) {
+		} else if (isGhostTour) {
+			BattleTeambuilderTable['ghostingpatch'] = {};
+			BattleTeambuilderTable['ghostingpatch'].learnsets = {};
+			BattleTeambuilderTable['ghostingpatch'].tiers = tiers;
+			BattleTeambuilderTable['ghostingpatch'].items = items;
+			BattleTeambuilderTable['ghostingpatch'].overrideTier = overrideTier;
+			BattleTeambuilderTable['ghostingpatch'].formatSlices = formatSlices;
+		}
+		else if (isBW1 || isRS || isFRLG) {
 			BattleTeambuilderTable[gen] = {};
 			BattleTeambuilderTable[gen].overrideTier = overrideTier;
 			BattleTeambuilderTable[gen].tiers = tiers;
@@ -700,7 +710,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				continue;
 			}
 			if (item.isNonstandard && !isMetBattle) {
-				if (isNatDex || isDDLS3) {
+				if (isNatDex || isDDLS3 || isGhostTour) {
 					let curItem = item;
 					let curGen = genNum;
 					while (curItem.isNonstandard && curGen >= 7) {
@@ -1123,6 +1133,48 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 
+	const GhostingTourLearnsets = Dex.mod('ghostingpatch').data.Learnsets;
+	const G9BaseLearnsets = BattleTeambuilderTable.learnsets;
+	for (const tableId of ['ghostingpatch']) {
+		for (const id in G9BaseLearnsets) {
+			const species = Dex.mod('ghostingpatch').species.get(id);
+			if (species.isNonstandard && ['Unobtainable', 'CAP'].includes(species.isNonstandard)) continue;
+			
+			BattleTeambuilderTable[tableId].learnsets[id] = {};
+
+			// Deep copy move learnset data (whatever casper said)
+			for (const moveid in G9BaseLearnsets[id]) {
+				if (G9BaseLearnsets[id][moveid] === undefined) { continue; } //if removed by mod, do not add data
+				BattleTeambuilderTable[tableId].learnsets[id][moveid] = G9BaseLearnsets[id][moveid];
+			}
+
+			//Add/override with custom mod's learnset additions
+			if (GhostingTourLearnsets[id]?.learnset) {
+				const customLearnset = GhostingTourLearnsets[id].learnset;
+				for (const moveid in customLearnset) {
+					const gens = customLearnset[moveid].map(x => Number(x[0]));
+					const minGen = Math.min(...gens);
+
+					BattleTeambuilderTable[tableId].learnsets[id][moveid] = '0123456789'.slice(minGen);
+
+					if (gens.indexOf(6) >= 0) BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'p';
+					if (gens.indexOf(7) >= 0 && customLearnset[moveid].some(x => x[0] === '7' && x !== '7V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'q';
+					}
+					if (gens.indexOf(8) >= 0 && customLearnset[moveid].some(x => x[0] === '8' && x !== '8V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'g';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x[0] === '9' && x !== '9V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'a';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x === '9E')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'e';
+					}
+				}
+			}
+		}
+	}
+
 	const SSDLC1Learnsets = Dex.mod('gen8dlc1').data.Learnsets;
 	for (const id in SSDLC1Learnsets) {
 		const learnset = SSDLC1Learnsets[id].learnset;
@@ -1403,7 +1455,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'ddls3patch',
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'ddls3patch', 'ghostingpatch'
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
