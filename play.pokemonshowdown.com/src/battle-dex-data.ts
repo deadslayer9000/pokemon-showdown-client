@@ -908,7 +908,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	aipomdelta: 1644 + 219,
 	growlithedelta: 1644 + 220,
 	terapagosatom: 1644 + 221,
-	terapagosatomgalactic: 1644 + 222,
+	terapagosatomcosmic: 1644 + 222,
 
 };
 
