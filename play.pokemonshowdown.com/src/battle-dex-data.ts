@@ -909,13 +909,14 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	growlithedelta: 1644 + 220,
 	terapagosatom: 1644 + 221,
 	terapagosatomcosmic: 1644 + 222,
-	shayminomega: 1644 + 223,
-	shayminomegasky: 1644 + 224,
-	appletunultra: 1644 + 225,
-	spindaatom: 1644 + 226,
-	slugrit: 1644 + 227,
-	celebidelta: 1644 + 228,
-	jirachidelta: 1644 + 229,
+	terapagosatomgalactic: 1644 + 223,
+	shayminomega: 1644 + 224,
+	shayminomegasky: 1644 + 225,
+	appletunultra: 1644 + 226,
+	spindaatom: 1644 + 227,
+	slugrit: 1644 + 228,
+	celebidelta: 1644 + 229,
+	jirachidelta: 1644 + 230,
 
 };
 
