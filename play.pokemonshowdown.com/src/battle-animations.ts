@@ -1885,6 +1885,7 @@ export class PokemonSprite extends Sprite {
 		necrosis: ['Necrosis', 'bad'],
 		viremic: ["Viremic", 'bad'],
 		hydroswirltrapped: ["Hydroswirl Trapped", "bad"],
+		azurestormtrapped: ["Azure Storm Trapped", "bad"],
 		// sub graphics are handled elsewhere, see Battle.Sprite.animSub()
 		uproar: ['Uproar', 'neutral'],
 		rage: ['Rage', 'neutral'],
