@@ -980,7 +980,7 @@ export class ModdedDex {
 		let gen = parseInt(modid.charAt(3), 10);
 		if (this.modid === 'champions') gen = 9;
 		if (this.modid === 'ddls3patch' || this.modid === 'ghostingpatch') gen = 9; // Required to not throw err.
-		if (((modid !== 'champions' && modid !== 'ddls3patch' && modid !== 'ghostingpatch')  && !modid.startsWith('gen')) || !gen) {
+		if (((modid !== 'champions' && modid !== 'ddls3patch' && modid !== 'ghostingpatch' && modid !== 'ddls4patch')  && !modid.startsWith('gen')) || !gen) {
 			throw new Error(`Unsupported modid ${modid}, ${gen}`);
 		}
 		this.gen = gen;
