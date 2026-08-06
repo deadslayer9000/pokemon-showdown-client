@@ -274,6 +274,9 @@ export const Dex = new class implements ModdedDex {
 		if (formatid === 'ghostingpatch') {
 			dex = Dex.mod('ghostingpatch' as ID);
 		}
+		if (formatid === 'ddls4patch') {
+			dex = Dex.mod('ddls4patch' as ID);
+		}
 		if (dex.gen === 7 && formatid.includes('letsgo')) {
 			dex = Dex.mod('gen7letsgo' as ID);
 		}
