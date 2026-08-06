@@ -423,7 +423,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
-				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411) || isDDLS3 || isGhosting) {
+				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411) || isDDLS3 || isGhosting || isDDLS4) {
 					return species.natDexTier;
 				}
 				return species.tier;
@@ -721,7 +721,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				continue;
 			}
 			if (item.isNonstandard && !isMetBattle) {
-				if (isNatDex || isDDLS3 || isGhosting) {
+				if (isNatDex || isDDLS3 || isGhosting || isDDLS4) {
 					let curItem = item;
 					let curGen = genNum;
 					while (curItem.isNonstandard && curGen >= 7) {
