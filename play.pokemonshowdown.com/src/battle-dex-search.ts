@@ -736,9 +736,9 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.dex = Dex.mod('ghostingpatch' as ID);
 		}
 		if (format.includes('ddls4') || format.includes('deltadraftleagueseason4')) {
-			format = format.slice(0) as ID;
 			this.formatType = 'ddls4';
 			this.dex = Dex.mod('ddls4patch' as ID);
+			if (!format) format = 'uber' as ID;
 		}
 		this.format = format;
 
