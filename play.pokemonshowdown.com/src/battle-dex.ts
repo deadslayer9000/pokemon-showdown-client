@@ -274,6 +274,9 @@ export const Dex = new class implements ModdedDex {
 		if (formatid === 'ghostingpatch') {
 			dex = Dex.mod('ghostingpatch' as ID);
 		}
+		if (formatid === 'ddls4patch') {
+			dex = Dex.mod('ddls4patch' as ID);
+		}
 		if (dex.gen === 7 && formatid.includes('letsgo')) {
 			dex = Dex.mod('gen7letsgo' as ID);
 		}
@@ -979,8 +982,8 @@ export class ModdedDex {
 		this.modid = modid;
 		let gen = parseInt(modid.charAt(3), 10);
 		if (this.modid === 'champions') gen = 9;
-		if (this.modid === 'ddls3patch' || this.modid === 'ghostingpatch') gen = 9; // Required to not throw err.
-		if (((modid !== 'champions' && modid !== 'ddls3patch' && modid !== 'ghostingpatch')  && !modid.startsWith('gen')) || !gen) {
+		if (this.modid === 'ddls3patch' || this.modid === 'ghostingpatch' || 'ddls4patch') gen = 9; // Required to not throw err.
+		if (((modid !== 'champions' && modid !== 'ddls3patch' && modid !== 'ghostingpatch' && modid !== 'ddls4patch')  && !modid.startsWith('gen')) || !gen) {
 			throw new Error(`Unsupported modid ${modid}, ${gen}`);
 		}
 		this.gen = gen;
