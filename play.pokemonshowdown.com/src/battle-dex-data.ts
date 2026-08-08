@@ -917,8 +917,9 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	slugrit: 1644 + 228,
 	celebidelta: 1644 + 229,
 	jirachidelta: 1644 + 230,
-	heatrandelta: 1644 + 231,
-	hydrappleultra: 1644 + 232,
+	hydrappleultra: 1644 + 231,
+	heatrandelta: 1644 + 232,
+
 
 };
 
