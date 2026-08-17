@@ -1768,6 +1768,9 @@ export class BattleTooltips {
 			if (isSound && value.abilityModify(0, 'Liquid Voice')) {
 				moveType = 'Water';
 			}
+			if (isSound && value.abilityModify(0, 'Amped Voice')) {
+				moveType = 'Electric';
+			}
 		}
 
 		if (move.id === 'photongeyser' || move.id === 'lightthatburnsthesky' ||
@@ -2530,7 +2533,7 @@ export class BattleTooltips {
 			if (pokemon.isGrounded(serverPokemon)) {
 				value.modify(this.battle.gen > 7 ? 1.3 : 1.5, 'Terrain boost');
 			}
-		} else if (this.battle.hasPseudoWeather('Misty Terrain') && moveType === 'Dragon') {
+		} else if (this.battle.hasPseudoWeather('Misty Terrain') && moveType === 'Dragon' && move.id !== 'dracobloom') {
 			if (target ? target.isGrounded() : true) {
 				value.modify(0.5, 'Misty Terrain + grounded target');
 			}
@@ -2560,6 +2563,9 @@ export class BattleTooltips {
 		}
 		if (move.id === 'noxiouspower' && this.battle.hasPseudoWeather('Corrosive Terrain') && target?.isGrounded()) {
 			value.modify(2, 'Noxious Power + Corrosive Terrain boost');
+		}
+		if (move.id === 'dracobloom' && this.battle.hasPseudoWeather('Misty Terrain')) {
+			value.modify(1.5, 'Draco Bloom + Misty Terrain boost');
 		}
 
 		// Item
