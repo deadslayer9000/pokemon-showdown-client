@@ -2565,7 +2565,7 @@ export class BattleTooltips {
 			value.modify(2, 'Noxious Power + Corrosive Terrain boost');
 		}
 		if (move.id === 'dracobloom' && this.battle.hasPseudoWeather('Misty Terrain')) {
-			value.modify(2, 'Draco Bloom + Misty Terrain boost');
+			value.modify(1.5, 'Draco Bloom + Misty Terrain boost');
 		}
 
 		// Item
