@@ -264,7 +264,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	const STADIUM = [2.04, 1.04];
 	const NATDEX = [9.1, 8.1];
 	const OTHER = [
-		9.9, 9.67, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401, 9.443, 9.444, 9.445,
+		9.9, 9.67, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401, 9.443, 9.444, 9.445, 9.446,
 		8.6, 8.4, 8.2, -8.4, -8.6,
 		7.1,
 		5.1,
@@ -292,6 +292,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isGhosting = genIdent === 9.444;
 		const isDDLS3 = genIdent === 9.443;
 		const isDDLS4 = genIdent === 9.445;
+		const isJuicy = genIdent === 9.446;
 		const genNum = Math.floor(isDoubles ? -genIdent : genIdent);
 		const isBW1 = genIdent === 5.1;
 		const isRS = genIdent === 3.1;
@@ -313,6 +314,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isDDLS3) genStr = 'ddls3patch';
 			if (isDDLS4) genStr = 'ddls4patch';
 			if (isGhosting) genStr = 'ghostingpatch';
+			if (isJuicy) genStr = 'jddldraft';
 
 			return genStr;
 		})();
@@ -625,6 +627,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['ghostingpatch'].items = items;
 			BattleTeambuilderTable['ghostingpatch'].overrideTier = overrideTier;
 			BattleTeambuilderTable['ghostingpatch'].formatSlices = formatSlices;
+		}
+		else if (isJuicy) {
+			BattleTeambuilderTable['jddldraft'] = {};
+			BattleTeambuilderTable['jddldraft'].learnsets = {};
+			BattleTeambuilderTable['jddldraft'].tiers = tiers;
+			BattleTeambuilderTable['jddldraft'].items = items;
+			BattleTeambuilderTable['jddldraft'].overrideTier = overrideTier;
+			BattleTeambuilderTable['jddldraft'].formatSlices = formatSlices;
 		}
 		else if (isBW1 || isRS || isFRLG) {
 			BattleTeambuilderTable[gen] = {};
@@ -1226,6 +1236,47 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 
+	const JuicyLearnsets = Dex.mod('jddldraft').data.Learnsets;
+	for (const tableId of ['jddldraft']) {
+		for (const id in G9BaseLearnsets) {
+			const species = Dex.mod('jddldraft').species.get(id);
+			if (species.isNonstandard && ['Unobtainable', 'CAP'].includes(species.isNonstandard)) continue;
+			
+			BattleTeambuilderTable[tableId].learnsets[id] = {};
+
+			// Deep copy move learnset data (whatever casper said)
+			for (const moveid in G9BaseLearnsets[id]) {
+				if (G9BaseLearnsets[id][moveid] === undefined) { continue; } //if removed by mod, do not add data
+				BattleTeambuilderTable[tableId].learnsets[id][moveid] = G9BaseLearnsets[id][moveid];
+			}
+
+			//Add/override with custom mod's learnset additions
+			if (JuicyLearnsets[id]?.learnset) {
+				const customLearnset = JuicyLearnsets[id].learnset;
+				for (const moveid in customLearnset) {
+					const gens = customLearnset[moveid].map(x => Number(x[0]));
+					const minGen = Math.min(...gens);
+
+					BattleTeambuilderTable[tableId].learnsets[id][moveid] = '0123456789'.slice(minGen);
+
+					if (gens.indexOf(6) >= 0) BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'p';
+					if (gens.indexOf(7) >= 0 && customLearnset[moveid].some(x => x[0] === '7' && x !== '7V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'q';
+					}
+					if (gens.indexOf(8) >= 0 && customLearnset[moveid].some(x => x[0] === '8' && x !== '8V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'g';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x[0] === '9' && x !== '9V')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'a';
+					}
+					if (gens.indexOf(9) >= 0 && customLearnset[moveid].some(x => x === '9E')) {
+						BattleTeambuilderTable[tableId].learnsets[id][moveid] += 'e';
+					}
+				}
+			}
+		}
+	}
+
 	const SSDLC1Learnsets = Dex.mod('gen8dlc1').data.Learnsets;
 	for (const id in SSDLC1Learnsets) {
 		const learnset = SSDLC1Learnsets[id].learnset;
@@ -1506,7 +1557,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'ddls3patch', 'ghostingpatch', 'ddls4patch'
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'ddls3patch', 'ghostingpatch', 'ddls4patch', 'jddldraft'
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
