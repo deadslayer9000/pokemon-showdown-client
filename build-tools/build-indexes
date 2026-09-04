@@ -57,7 +57,7 @@ function requireNoCache(pathSpec) {
 		'monster', 'water1', 'bug', 'flying', 'field', 'fairy', 'grass', 'humanlike', 'water3', 'mineral', 'amorphous', 'water2', 'ditto', 'dragon', 'undiscovered',
 	].map(x => toID(x) + ' egggroup'));
 	index = index.concat([
-		's', 'ou', 'a', 'uu', 'a-', 'b', 'ru', 'b-', 'nu', 'c', 'pu', 'zu', 'd', 'lc', 'nfe', 'uber', 'uubl', 'rubl', 'nubl', 'publ', 'zubl', 'cap', 'caplc', 'capnfe',
+		'ou', 'uu', 'ru', 'nu', 'pu', 'zu', 'lc', 'nfe', 'uber', 'uubl', 'rubl', 'nubl', 'publ', 'zubl', 'cap', 'caplc', 'capnfe',
 	].map(x => toID(x) + ' tier'));
 	index = index.concat ([ 
 		'red', 'blue', 'yellow', 'green', 'black', 'brown', 'purple', 'gray', 'white', 'pink'].map(x => toID(x) + ' color'));
@@ -679,13 +679,13 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			return [
-				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "S", "OU", "A", "(OU)", "UUBL", "A-", "UU", "B", "RUBL", "B-", "RU", "NUBL", "C", "NU", "PUBL", "PU", "ZUBL", "D", "ZU", "New", "NFE", "LC", "Unreleased",
+				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 			];
 		})();
 
 		for (const tier of tierOrder) {
 			if (tier in {
-				S: 1, OU: 1, A: 1, UUBL: 1, AG: 1, Uber: 1, "A-": 1, UU: 1, B: 1, RU: 1, "B-": 1, C: 1, NU: 1, PU: 1, D: 1, ZU: 1, NFE: 1, LC: 1, DOU: 1, DUU: 1,
+				OU: 1, UUBL: 1, AG: 1, Uber: 1, UU: 1, RU: 1, NU: 1, PU: 1, ZU: 1, NFE: 1, LC: 1, DOU: 1, DUU: 1,
 				"(DUU)": 1, New: 1, Legal: 1, Regular: 1, Restricted: 1, "CAP LC": 1,
 			}) {
 				let usedTier = tier;
