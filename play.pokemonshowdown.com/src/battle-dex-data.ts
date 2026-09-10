@@ -922,7 +922,10 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	ironrevival: 1644 + 233,
 	ironblaster: 1644 + 234,
 	chatoth: 1644 + 235,
-
+	lotadatom: 1644 + 236,
+	terrakiondelta: 1644 + 237,
+	apextyrant: 1644 + 238,
+	
 
 };
 
