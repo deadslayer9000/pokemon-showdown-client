@@ -713,7 +713,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'nfe';
 			if (!format) format = 'ou' as ID;
 		}
-		if ((format.endsWith('lc') || format.startsWith('lc')) && format !== 'caplc' && !this.formatType) {
+		if ((format.endsWith('lc') || format.startsWith('lc')) && format !== 'caplc' && !this.formatType || format.endsWith('lcs2')) {
 			this.formatType = 'lc';
 		}
 		if (format.endsWith('draft')) {
