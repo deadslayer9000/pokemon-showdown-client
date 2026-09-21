@@ -28,27 +28,27 @@ function requireScript(url) {
 	document.head.appendChild(scriptEl);
 }
 
-linkStyle('https://cobblemondelta.dynv6.net/style/font-awesome.css?');
-linkStyle('https://cobblemondelta.dynv6.net/style/battle.css?a7');
-linkStyle('https://cobblemondelta.dynv6.net/style/replay.css?a7');
-linkStyle('https://cobblemondelta.dynv6.net/style/utilichart.css?a7');
+linkStyle('https://deltashowdown.net/style/font-awesome.css?');
+linkStyle('https://deltashowdown.net/style/battle.css?a7');
+linkStyle('https://deltashowdown.net/style/replay.css?a7');
+linkStyle('https://deltashowdown.net/style/utilichart.css?a7');
 
-requireScript('https://cobblemondelta.dynv6.net/js/lib/ps-polyfill.js');
-requireScript('https://cobblemondelta.dynv6.net/config/config.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/js/lib/jquery-1.11.0.min.js');
-requireScript('https://cobblemondelta.dynv6.net/js/lib/html-sanitizer-minified.js');
-requireScript('https://cobblemondelta.dynv6.net/js/battle-sound.js');
-requireScript('https://cobblemondelta.dynv6.net/js/battledata.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/pokedex-mini.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/pokedex-mini-bw.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/graphics.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/pokedex.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/moves.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/abilities.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/items.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/data/teambuilder-tables.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/js/battle-tooltips.js?a7');
-requireScript('https://cobblemondelta.dynv6.net/js/battle.js?a7');
+requireScript('https://deltashowdown.net/js/lib/ps-polyfill.js');
+requireScript('https://deltashowdown.net/config/config.js?a7');
+requireScript('https://deltashowdown.net/js/lib/jquery-1.11.0.min.js');
+requireScript('https://deltashowdown.net/js/lib/html-sanitizer-minified.js');
+requireScript('https://deltashowdown.net/js/battle-sound.js');
+requireScript('https://deltashowdown.net/js/battledata.js?a7');
+requireScript('https://deltashowdown.net/data/pokedex-mini.js?a7');
+requireScript('https://deltashowdown.net/data/pokedex-mini-bw.js?a7');
+requireScript('https://deltashowdown.net/data/graphics.js?a7');
+requireScript('https://deltashowdown.net/data/pokedex.js?a7');
+requireScript('https://deltashowdown.net/data/moves.js?a7');
+requireScript('https://deltashowdown.net/data/abilities.js?a7');
+requireScript('https://deltashowdown.net/data/items.js?a7');
+requireScript('https://deltashowdown.net/data/teambuilder-tables.js?a7');
+requireScript('https://deltashowdown.net/js/battle-tooltips.js?a7');
+requireScript('https://deltashowdown.net/js/battle.js?a7');
 
 var Replays = {
 	battle: null,

@@ -120,7 +120,7 @@ export class TeamEditorState extends PSModel {
 		) {
 			this.defaultLevel = 50;
 		}
-		if (formatid.includes('lc')) {
+		if (formatid.includes('lc') || formatid.includes('lcseason2')) {
 			this.defaultLevel = 5;
 		}
 	}

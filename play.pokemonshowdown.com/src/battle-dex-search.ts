@@ -713,7 +713,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'nfe';
 			if (!format) format = 'ou' as ID;
 		}
-		if ((format.endsWith('lc') || format.startsWith('lc')) && format !== 'caplc' && !this.formatType || format.endsWith('lcs2')) {
+		if ((format.endsWith('lc') || format.startsWith('lc')) && format !== 'caplc' && !this.formatType || format.endsWith('lcseason2')) {
 			this.formatType = 'lc';
 		}
 		if (format.endsWith('draft')) {
@@ -1188,7 +1188,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		else if (format === 'zu' && dex.gen === 5) tierSet = tierSet.slice(slices.PU || slices.NU);
 		else if (format === 'zu') tierSet = tierSet.slice(slices.ZU || slices.PU || slices.NU);
 		else if (
-			format === 'lc' || format === 'lcuu' || format.startsWith('lc') || (format !== 'caplc' && format.endsWith('lc'))
+			format === 'lc' || format === 'lcuu' || format === 'ddllcseason2' || format.startsWith('lc') || (format !== 'caplc' && format.endsWith('lc'))
 		) tierSet = tierSet.slice(slices.LC);
 		else if (format === 'cap' || format.endsWith('cap')) {
 			tierSet = tierSet.slice(0, slices.AG || slices.Uber).concat(tierSet.slice(slices.OU));
