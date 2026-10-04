@@ -925,7 +925,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	lotadatom: 1644 + 236,
 	terrakiondelta: 1644 + 237,
 	apextyrant: 1644 + 238,
-	
+	magearnaoriginaldelta: 1644 + 239,
 
 };
 
