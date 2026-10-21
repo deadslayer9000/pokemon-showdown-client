@@ -38385,6 +38385,15 @@ putridgrasp: {
 			}, 'accel', 'fade', { filter: 'brightness(5)' });
 		},
 	},
+	glacialpinion: {
+		anim(scene, [attacker, defender]) {
+			attacker.anim({
+				opacity: 0.2,
+				y: attacker.y - 80,
+				time: 300,
+			}, 'linear');
+		}
+	},
 };
 // placeholder animations
 BattleMoveAnims['torment'] = { anim: BattleMoveAnims['swagger'].anim };
