@@ -926,7 +926,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	terrakiondelta: 1644 + 237,
 	apextyrant: 1644 + 238,
 	magearnaoriginaldelta: 1644 + 239,
-
+	bisharpdelta: 1644 + 240,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
